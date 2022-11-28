@@ -25,14 +25,13 @@ Mengingat pentingnya digitalisasi untuk memulihkan perekonomian dunia, kelompok 
 User yang telah mendaftarkan akun dapat memasukkan username dan password untuk masuk ke halaman website. Pada halaman register, pengguna baru atau Guest dapat mendaftarkan akun agar bisa login sebagai User.
 
 ### 2. FAQ Module (Raden Dhaneswara Timur)
-Halaman ini berisi jawaban dari pertanyaan-pertanyaan yang umum ditanyakan pengguna Mercatura
-Pengguna yang telah login sebagai User dapat menambahkan daftar pertanyaan yang ada.
+Halaman ini berisi jawaban dari pertanyaan-pertanyaan yang umum ditanyakan pengguna Mercatura. Pengguna yang telah login sebagai User dapat menambahkan daftar pertanyaan yang ada.
 
 ### 3. Kisah Inspiratif Module (Majid Rajendra Rahmat)
-Halaman ini merupakan halaman utama yang berisi kisah inspiratif dari beberapa usaha secara singkat. Pengguna yang telah login sebagai User dapat menceritakan kisahnya dan akan ditampilkan disini.
+Halaman ini merupakan halaman utama yang berisi kisah inspiratif dari beberapa usaha secara singkat. Pengguna yang telah login sebagai User dapat menceritakan kisahnya dan akan ditampilkan disini. 
 
 ### 4. Article Module (Aidah Novallia Putri)
-Halaman ini berisi daftar artikel seputar UMKM yang dibuat oleh user Mercatura. Pengguna yang telah login sebagai User dapat menambahkan artikel baru serta melihat riwayat artikel yang telah dibuatnya.
+Halaman ini berisi daftar artikel seputar UMKM yang dibuat oleh user Mercatura. Pengguna yang telah login sebagai User dapat menambahkan artikel baru serta melihat riwayat artikel yang telah dibuatnya. Pada riwayat artikel, pengguna dapat mengubah ataupun menghapus artikel yang telah dibuatnya.
 
 ### 5. Kritik dan Saran Module (Katrina Gisella Sembiring)
 Halaman ini berisi kritik dan saran yang User ingin sampaikan terkait dengan Mercatura. User juga dapat menyatakan bahwa ia setuju dengan kritik atau saran yang sudah dibaut sebelumnya dengan menekan tombol "Setuju". Membuat serta setuju dengan kritik dan saran hanya dibatasi untuk User yang sudah _log in_ saja, dan User yang tidak _log in_ hanya dapat melihat kritik dan saran yang sudah dibuat oleh User lain. 
