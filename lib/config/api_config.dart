@@ -1,0 +1,1 @@
+const String apiUrl = "https://mercatura-id.up.railway.app";
