@@ -47,7 +47,13 @@ class ArtikelTerbaru extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {}, 
+            onPressed: () {
+              Navigator.pushNamed(
+                context, 
+                '/artikel/detail',
+                arguments: articles[0]
+              );
+            }, 
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero
             ),

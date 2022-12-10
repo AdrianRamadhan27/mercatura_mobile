@@ -1,1 +1,1 @@
-const String apiUrl = "https://mercatura-id.up.railway.app";
+const String apiUrl = "http://192.168.1.7:8000";

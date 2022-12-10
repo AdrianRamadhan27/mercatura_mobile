@@ -30,7 +30,7 @@ class kumpulanArtikel extends StatelessWidget {
               Text(
                 "Kumpulan Artikel",
                 style: GoogleFonts.poppins(
-                  color: Colors.black,
+                  color: const Color.fromARGB(255, 49, 19, 82),
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
@@ -45,7 +45,7 @@ class kumpulanArtikel extends StatelessWidget {
                 child: Text(
                   "More",
                   style: GoogleFonts.poppins(
-                    color: Colors.grey.shade600,
+                    color: const Color.fromARGB(255, 110, 19, 54),
                     fontWeight: FontWeight.normal,
                     fontSize: 18.0,
                   ),

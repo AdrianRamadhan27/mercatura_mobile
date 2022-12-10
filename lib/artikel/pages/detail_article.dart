@@ -29,9 +29,18 @@ class _ArticleDetailState extends State<ArticleDetail> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 40,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       extendBodyBehindAppBar: true,
-      drawer: buildDrawer(context),
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -46,13 +55,17 @@ class _ArticleDetailState extends State<ArticleDetail> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Text(
-                  article.title,
-                  style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    height: 1.25
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    article.title,
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.black, 
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                      )
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -74,7 +87,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                         )
                       ),
                     ),
-                    const SizedBox(width: 150),
+                    const SizedBox(width: 10),
                     Icon(
                       Icons.person,
                       size: 20,

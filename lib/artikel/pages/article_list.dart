@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import '../widget/newest_article.dart';
 import '../widget/list_article.dart';
 import '../models/article.dart';
@@ -20,9 +22,10 @@ class _ArticlePageState extends State<ArticlePage> {
 
   @override
   Widget build(BuildContext context) {
-    future.then((value){
-      log(articleToJson(value));
-    });
+    final request = context.watch<CookieRequest>();
+    // future.then((value){
+    //   log(articleToJson(value));
+    // });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -61,7 +64,30 @@ class _ArticlePageState extends State<ArticlePage> {
             }
           }
         }
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Tambah artikel",
+        backgroundColor: const Color.fromRGBO(94, 35, 157, 1),
+        foregroundColor: Colors.white,
+        elevation: 10.0,
+        child: Text(
+          "+",
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20
+            )
+          ),
+        ),
+        onPressed: () {
+          if (request.loggedIn == false) {
+            Navigator.pushReplacementNamed(context, '/login');
+          } else {
+            Navigator.pushReplacementNamed(context, '/artikel/create');
+          }
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
