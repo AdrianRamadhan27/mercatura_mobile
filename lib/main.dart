@@ -11,6 +11,12 @@ import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
 
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:mercatura/pages/login_page.dart';
+import 'package:mercatura/pages/register_page.dart';
+import 'package:mercatura/pages/home_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
