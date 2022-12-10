@@ -37,8 +37,9 @@ class _LoginPageState extends State<LoginPage> {
     request.headers["Referer"] = apiUrl;
     if (!mounted) return;
     if (request.loggedIn) {
-      const snackBar = SnackBar(content: Text("Berhasil login!"));
-      scaffoldMessenger.showSnackBar(snackBar);
+      String username = response["user"];
+      request.cookies["user"] = username;
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai "+username)));
       Navigator.of(context).pushReplacementNamed("/home");
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));

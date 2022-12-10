@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
+import 'package:mercatura/pages/umkm/umkm_list_page.dart';
+import 'package:mercatura/pages/umkm/umkm_form_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +33,8 @@ class MyApp extends StatelessWidget {
           "/home": (BuildContext context) => const HomePage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
+          "/umkm": (BuildContext context) => const UmkmListPage(),
+          "/tambah_umkm":  (BuildContext context) => const UmkmFormPage(),
         },
       ),
     );
