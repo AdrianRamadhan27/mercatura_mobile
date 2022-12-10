@@ -1,0 +1,309 @@
+import 'package:flutter/material.dart';
+import 'package:mercatura/config/api_config.dart';
+import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:mercatura/umkm/models/umkm.dart';
+
+
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+
+
+
+class UmkmUpdatePage extends StatefulWidget {
+  const UmkmUpdatePage({super.key, required this.umkmDetail});
+
+  final Umkm umkmDetail;
+  @override
+  State<UmkmUpdatePage> createState() => _UmkmUpdatePageState();
+}
+
+class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    _nama_usaha = widget.umkmDetail.fields.namaUsaha;
+    _bidang_usaha = widget.umkmDetail.fields.bidangUsaha;
+    _lokasi_usaha = widget.umkmDetail.fields.lokasiUsaha;
+    _email_usaha = widget.umkmDetail.fields.emailUsaha;
+    _website_usaha = (widget.umkmDetail.fields.websiteUsaha == "https://www.google.com/search?q=" + widget.umkmDetail.fields.namaUsaha) ?
+    "":
+    widget.umkmDetail.fields.websiteUsaha;
+    _logo_usaha = widget.umkmDetail.fields.logoUsaha;
+    _deskripsi_usaha = widget.umkmDetail.fields.deskripsiUsaha;
+
+
+  }
+
+  Future<void> _onSubmitBtnPressed(CookieRequest request,
+      ScaffoldMessengerState scaffoldMessenger) async {
+    setState(() {
+      isLoading = true;
+    });
+    // 'username' and 'password' should be the values of the user login form.
+    final Map<String, dynamic> response = await request.post("$apiUrl/umkm/update_umkm_json/${widget.umkmDetail.pk}", {
+      'nama_usaha': _nama_usaha,
+      'lokasi_usaha': _lokasi_usaha,
+      'deskripsi_usaha': _deskripsi_usaha,
+      'bidang_usaha': _bidang_usaha,
+      'website_usaha': _website_usaha,
+      'logo_usaha': _logo_usaha,
+      'email_usaha': _email_usaha,
+    });
+    request.headers["X-CSRFToken"] = request.cookies["csrftoken"] ?? "";
+    request.headers["Referer"] = apiUrl;
+    if (!mounted) return;
+    if (response["status"]) {
+      final snackBar = SnackBar(content: Text(response["message"]));
+      scaffoldMessenger.showSnackBar(snackBar);
+      Navigator.of(context).pushReplacementNamed("/detail_umkm", arguments: widget.umkmDetail.pk);
+    } else {
+      final snackBar = SnackBar(content: Text(response["message"]));
+      scaffoldMessenger.showSnackBar(snackBar);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  String _nama_usaha = "";
+  String _lokasi_usaha = "Aceh";
+  String _bidang_usaha = "Agribisnis";
+  String _email_usaha= "";
+  String _deskripsi_usaha = "";
+  String _website_usaha = "";
+  String _logo_usaha = "";
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    // The rest of your widgets are down below
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Update UMKM"),
+      ),
+      drawer: const MyDrawer(),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text("Edit UMKM " + _nama_usaha),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          initialValue: _nama_usaha,
+                          decoration: const InputDecoration(
+                            labelText: "Nama Usaha",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _nama_usaha = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _nama_usaha = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Nama usaha tidak boleh kosong!';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.class_),
+                        title: const Text(
+                          'Pilih Bidang Usaha',
+                        ),
+                        trailing: DropdownButton(
+                          value: _bidang_usaha,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: daftar_bidang.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+
+                              _bidang_usaha = newValue!;
+
+                            });
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.location_pin),
+                        title: const Text(
+                          'Pilih Lokasi Usaha',
+                        ),
+                        trailing: DropdownButton(
+                          value: _lokasi_usaha,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: daftar_provinsi.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _lokasi_usaha = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          initialValue: _email_usaha,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                            labelText: "Email Usaha",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _email_usaha = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _email_usaha = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Email tidak boleh kosong!';
+                            }
+                            return null;
+                          },
+
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          initialValue: _website_usaha,
+                          keyboardType: TextInputType.url,
+                          decoration: const InputDecoration(
+                            labelText: "Website Usaha",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _website_usaha = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _website_usaha = value!;
+                            });
+                          },
+
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          initialValue: _logo_usaha,
+                          keyboardType: TextInputType.url,
+                          decoration: const InputDecoration(
+                              labelText: "Logo Usaha",
+                              border: OutlineInputBorder(),
+                              hintText: "Masukkan url logo"
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _logo_usaha = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _logo_usaha = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Mohon pilih logo usaha!';
+                            }
+                            return null;
+                          },
+
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          initialValue: _deskripsi_usaha,
+                          decoration: const InputDecoration(
+                            labelText: "Deskripsi Usaha",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _deskripsi_usaha = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _deskripsi_usaha = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Deskripsi tidak boleh kosong!';
+                            }
+                            return null;
+                          },
+
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                            if (_formKey.currentState!.validate()) {
+                              _onSubmitBtnPressed(request, scaffoldMessenger);
+                            }
+                          },
+                          child: const Text("Submit")),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      if (isLoading)
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: CircularProgressIndicator(),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+}

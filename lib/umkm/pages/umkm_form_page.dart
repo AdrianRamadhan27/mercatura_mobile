@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mercatura/config/api_config.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
-import 'package:mercatura/models/umkm.dart';
+import 'package:mercatura/umkm/models/umkm.dart';
 
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -71,7 +71,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
     // The rest of your widgets are down below
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tambah UMKM " + request.cookies["user"]!),
+        title: const Text("Tambah UMKM"),
       ),
       drawer: const MyDrawer(),
       body: Column(
@@ -84,7 +84,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const Text("Form UMKM"),
+                      Text("Form UMKM " + request.cookies["user"]!),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(

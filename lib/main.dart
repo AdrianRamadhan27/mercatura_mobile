@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mercatura/umkm/models/umkm.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
-import 'package:mercatura/pages/umkm/umkm_list_page.dart';
-import 'package:mercatura/pages/umkm/umkm_form_page.dart';
+import 'package:mercatura/umkm/pages/umkm_list_page.dart';
+import 'package:mercatura/umkm/pages/umkm_form_page.dart';
+import 'package:mercatura/umkm/pages/umkm_detail_page.dart';
+import 'package:mercatura/umkm/pages/umkm_update_page.dart';
 
 
 void main() {
@@ -35,6 +38,18 @@ class MyApp extends StatelessWidget {
           "/register": (BuildContext context) => const RegisterPage(),
           "/umkm": (BuildContext context) => const UmkmListPage(),
           "/tambah_umkm":  (BuildContext context) => const UmkmFormPage(),
+
+
+        },
+        onGenerateRoute: (RouteSettings settings) {
+          var routes = <String, WidgetBuilder>{
+            "/detail_umkm":  (BuildContext context) => UmkmDetailPage(id:settings.arguments as int),
+            "/update_umkm":  (BuildContext context) => UmkmUpdatePage(umkmDetail:settings.arguments as Umkm),
+          };
+
+          WidgetBuilder builder = routes[settings.name]!;
+          return MaterialPageRoute(builder: (context) => builder(context));
+
         },
       ),
     );
