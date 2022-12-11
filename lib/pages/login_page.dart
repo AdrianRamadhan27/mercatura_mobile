@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mercatura/config/api_config.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -37,8 +38,9 @@ class _LoginPageState extends State<LoginPage> {
     request.headers["Referer"] = apiUrl;
     if (!mounted) return;
     if (request.loggedIn) {
-      const snackBar = SnackBar(content: Text("Berhasil login!"));
-      scaffoldMessenger.showSnackBar(snackBar);
+      String username = response["user"];
+      request.cookies["user"] = username;
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai "+username)));
       Navigator.of(context).pushReplacementNamed("/home");
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Login"),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
         children: [
           Padding(
@@ -151,13 +153,14 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Belum Punya Akun?'),
               TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed("/register");
-                  },
-                  child: Text("Register"),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed("/register");
+                },
+                child: Text("Register"),
               )
             ],
           )

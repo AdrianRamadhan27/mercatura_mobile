@@ -106,7 +106,7 @@ class DrawerWidget extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: request.loggedIn? const Icon(Icons.logout_rounded, color: Color.fromARGB(255, 250, 124, 223)) : const Icon(Icons.login, color: Color.fromARGB(255, 250, 124, 223)),
+              leading: request.loggedIn? const Icon(Icons.logout_outlined, color: Color.fromARGB(255, 250, 124, 223)) : const Icon(Icons.login_rounded, color: Color.fromARGB(255, 250, 124, 223)),
               title: request.loggedIn? Text(
                 "Logout",
                 style: GoogleFonts.poppins(

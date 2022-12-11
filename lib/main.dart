@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
-        title: 'Flutter App',
+        title: 'Mercatura',
         theme: ThemeData(
           colorScheme: const ColorScheme.light(
             primary: Color.fromRGBO(94, 35, 157, 1),
