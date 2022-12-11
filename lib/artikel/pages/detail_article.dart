@@ -32,7 +32,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: Color.fromRGBO(94, 35, 157, 1),
             size: 40,
           ),
           onPressed: () {
@@ -52,7 +52,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
             borderRadius: 0.0,
           ),
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 Align(
@@ -61,7 +61,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                     article.title,
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                        color: Colors.black, 
+                        color: Color.fromARGB(255, 49, 19, 82), 
                         fontWeight: FontWeight.bold,
                         fontSize: 20
                       )
@@ -71,34 +71,34 @@ class _ArticleDetailState extends State<ArticleDetail> {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.date_range_rounded,
                       size: 20,
-                      color: Colors.grey.shade600,
+                      color: Color.fromRGBO(94, 35, 157, 1),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       dateFormatter(article.date),                                  
                       style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: Colors.grey.shade600, 
+                        textStyle: const TextStyle(
+                          color: Color.fromRGBO(94, 35, 157, 1), 
                           fontWeight: FontWeight.bold,
                           fontSize: 14
                         )
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Icon(
+                    const Icon(
                       Icons.person,
                       size: 20,
-                      color: Colors.grey.shade600,
+                      color: Color.fromRGBO(94, 35, 157, 1),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       article.author[0],                                  
                       style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: Colors.grey.shade600, 
+                        textStyle: const TextStyle(
+                          color: Color.fromRGBO(94, 35, 157, 1), 
                           fontWeight: FontWeight.bold,
                           fontSize: 14
                         )

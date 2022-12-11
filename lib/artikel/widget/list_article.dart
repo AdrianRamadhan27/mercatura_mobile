@@ -85,7 +85,7 @@ class kumpulanArtikel extends StatelessWidget {
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
-                            color: Colors.black,
+                            color: const Color.fromRGBO(94, 35, 157, 1),
                             fontWeight: FontWeight.w600,
                             fontSize: 14.0,
                             height: 1.5
@@ -96,7 +96,7 @@ class kumpulanArtikel extends StatelessWidget {
                           'dibuat pada ${dateFormatter(articles[index].date)}',
                           style: GoogleFonts.poppins(
                             color: Colors.grey,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             fontSize: 12.0,
                           ),
                         ),
@@ -105,7 +105,7 @@ class kumpulanArtikel extends StatelessWidget {
                           'oleh ${articles[index].author[0]}',
                           style: GoogleFonts.poppins(
                             color: Colors.grey,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             fontSize: 12.0,
                           ),
                         )

@@ -33,7 +33,7 @@ class _CreateArticleState extends State<CreateArticle> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Color.fromRGBO(94, 35, 157, 1),
             size: 30,
           ),
           onPressed: () {
@@ -43,7 +43,7 @@ class _CreateArticleState extends State<CreateArticle> {
         title: Text(
           "Tambah Artikel",
           style: GoogleFonts.poppins(
-            color: Colors.black,
+            color: const Color.fromRGBO(94, 35, 157, 1),
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
           ),
@@ -70,6 +70,7 @@ class _CreateArticleState extends State<CreateArticle> {
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  style: GoogleFonts.poppins(),
                   decoration: const InputDecoration(
                     labelText: "Judul",
                   ),
@@ -177,8 +178,15 @@ class _CreateArticleState extends State<CreateArticle> {
                       ));
                     }
                   }, 
-                  child: const Text(
-                    "Tambah Artikel"
+                  child: Text(
+                    "Tambah Artikel",
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
                   )
                 )
               ],

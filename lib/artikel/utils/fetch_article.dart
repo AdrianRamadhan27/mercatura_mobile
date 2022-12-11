@@ -3,7 +3,7 @@ import '../models/article.dart';
 import 'dart:convert';
 
 Future<List<Article>> fetchArticle() async {
-  var url = Uri.parse('http://192.168.1.4:8000/artikel/json/');
+  var url = Uri.parse('https://mercatura-id.up.railway.app/artikel/json/');
   var response = await http.get(
     url,
     headers: {

@@ -40,7 +40,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Color.fromRGBO(94, 35, 157, 1),
             size: 30,
           ),
           onPressed: () {
@@ -51,7 +51,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
           'List Artikel',
           style: GoogleFonts.poppins(
             textStyle: const TextStyle(
-              color: Colors.black, 
+              color: Color.fromRGBO(94, 35, 157, 1), 
               fontWeight: FontWeight.bold,
               fontSize: 24
             )
@@ -71,10 +71,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 return Column(
                   children: [
                     Text(
-                      "Oh no! Tidak ada watch list :(",
+                      "Oh no! Tidak ada artikel :(",
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
-                        color: Colors.black, 
+                        color: Color.fromRGBO(94, 35, 157, 1), 
                         fontSize: 20)
                       ),
                     ),
@@ -94,9 +94,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                         Text(
                           'Mercatura menyediakan informasi seputar UMKM yang dirangkum dalam kumpulan artikel yang menarik.',
                           style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                              color: Colors.grey.shade600, 
-                              fontWeight: FontWeight.w400,
+                            textStyle: const TextStyle(
+                              color: Colors.black,
                               fontSize: 14
                             )
                           ),
@@ -134,7 +133,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.poppins(
                                               textStyle: const TextStyle(
-                                                color: Colors.black, 
+                                                color: Color.fromRGBO(94, 35, 157, 1), 
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14
                                               )
