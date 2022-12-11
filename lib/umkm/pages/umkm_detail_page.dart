@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:mercatura/config/api_config.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
 import 'package:mercatura/umkm/api/umkm_api.dart';
 
 
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
+
 
 class UmkmDetailPage extends StatefulWidget {
   UmkmDetailPage({super.key, required this.id});
@@ -45,9 +47,9 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detail UMKM"),
+        title: Text("Detail UMKM", style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: FutureBuilder(
         future: futureUmkmDetail,
         builder: (context, AsyncSnapshot snapshot) {
@@ -68,10 +70,10 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                             children: [
                               Text(
                                 snapshot.data.fields.namaUsaha,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6
-                                    ?.copyWith(fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30
+                                  )
                               ),
                               const SizedBox(height: 16),
                               Wrap(
@@ -81,7 +83,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                     crossAxisAlignment: WrapCrossAlignment.center,
                                     children: [
                                       Icon(Icons.location_pin),
-                                      Text(snapshot.data.fields.lokasiUsaha)
+                                      Text(snapshot.data.fields.lokasiUsaha, style: GoogleFonts.poppins())
                                     ]
                                   ),
                                   SizedBox(width: 10),
@@ -89,7 +91,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                       crossAxisAlignment: WrapCrossAlignment.center,
                                       children: [
                                         Icon(Icons.email),
-                                        Text(snapshot.data.fields.emailUsaha)
+                                        Text(snapshot.data.fields.emailUsaha, style: GoogleFonts.poppins())
                                       ]
                                   ),
                                 ],
@@ -99,11 +101,11 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                   decoration: BoxDecoration(
                                       color: Colors.pink,
                                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                  child: new Center(
+                                  child:  Center(
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: new Text(snapshot.data.fields.deskripsiUsaha,
-                                        style: TextStyle(color: Colors.white, fontSize: 12),
+                                      child:  Text(snapshot.data.fields.deskripsiUsaha,
+                                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
                                         textAlign: TextAlign.center,),
                                     ),
                                   )),
@@ -119,7 +121,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                     },
                                     heroTag: 'back',
                                     elevation: 0,
-                                    label: const Text("Kembali"),
+                                    label: Text("Kembali", style: GoogleFonts.poppins(fontSize: 12)),
                                     icon: const Icon(Icons.arrow_back),
                                   ),
                                   const SizedBox(width: 16.0),
@@ -130,7 +132,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                     },
                                     heroTag: 'url',
                                     elevation: 0,
-                                    label: const Text("Copy Url Website"),
+                                    label: Text("Copy Url Website", style: GoogleFonts.poppins(fontSize: 12)),
                                     icon: const Icon(Icons.copy),
                                   ),
                                   const SizedBox(width: 16.0),
@@ -143,7 +145,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                     },
                                     heroTag: 'edit',
                                     elevation: 0,
-                                    label: const Text("Edit"),
+                                    label:  Text("Edit", style: GoogleFonts.poppins(fontSize: 12)),
                                     icon: const Icon(Icons.edit),
                                   ) :
                                   Container(),
@@ -179,7 +181,7 @@ class _TopPortion extends StatelessWidget {
               gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: [Color(0xff0043ba), Color(0xff006df1)]),
+                  colors: [Colors.purple,Color.fromRGBO(94, 35, 157, 1)]),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50),
                 bottomRight: Radius.circular(50),
@@ -207,21 +209,20 @@ class _TopPortion extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   child:  Container(
-
-                    color: Colors.transparent,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: new Center(
-                            child: new Text("#" + umkmDetail.fields.bidangUsaha,
-                              style: TextStyle(color: Colors.white, fontSize: 12),
-                              textAlign: TextAlign.center,),
-                          ),
-                        )),
-                  ),
+                      decoration: BoxDecoration(
+                          color: (umkmDetail.fields.bidangUsaha == "Agribisnis") ?
+                          Colors.green : (umkmDetail.fields.bidangUsaha == "Kuliner") ?
+                          Colors.orange :
+                          Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child:  Center(
+                          child: Text("#" + umkmDetail.fields.bidangUsaha,
+                            style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
+                            textAlign: TextAlign.center,),
+                        ),
+                      )),
                 ),
               ],
             ),

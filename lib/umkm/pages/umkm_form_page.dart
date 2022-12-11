@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:mercatura/config/api_config.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
 
 
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
+
 
 
 
@@ -42,7 +45,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
     request.headers["Referer"] = apiUrl;
     if (!mounted) return;
     if (response["status"]) {
-      final snackBar = SnackBar(content: Text(response["message"]));
+      final snackBar = SnackBar(content: Text("Berhasil menambahkan " +  response["nama_usaha"]));
       scaffoldMessenger.showSnackBar(snackBar);
       Navigator.of(context).pushReplacementNamed("/umkm");
     } else {
@@ -72,9 +75,9 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("Tambah UMKM"),
+        title: Text("Tambah UMKM", style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -87,7 +90,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                     children: [
                       Text(
                         "Form UMKM " + request.cookies["user"]!,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -95,6 +98,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           decoration: const InputDecoration(
                             labelText: "Nama Usaha",
                             border: OutlineInputBorder(),
@@ -119,8 +123,9 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.class_),
-                        title: const Text(
+                        title: Text(
                           'Pilih Bidang Usaha',
+                          style: GoogleFonts.poppins()
                         ),
                         trailing: DropdownButton(
                           value: _bidang_usaha,
@@ -128,7 +133,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                           items: daftar_bidang.map((String items) {
                             return DropdownMenuItem(
                               value: items,
-                              child: Text(items),
+                              child: Text(items, style: GoogleFonts.poppins()),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
@@ -142,8 +147,9 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.location_pin),
-                        title: const Text(
+                        title: Text(
                           'Pilih Lokasi Usaha',
+                          style: GoogleFonts.poppins()
                         ),
                         trailing: DropdownButton(
                           value: _lokasi_usaha,
@@ -151,7 +157,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                           items: daftar_provinsi.map((String items) {
                             return DropdownMenuItem(
                               value: items,
-                              child: Text(items),
+                              child: Text(items, style: GoogleFonts.poppins()),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
@@ -164,6 +170,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             labelText: "Email Usaha",
@@ -191,6 +198,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           keyboardType: TextInputType.url,
                           decoration: const InputDecoration(
                             labelText: "Website Usaha",
@@ -213,6 +221,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           keyboardType: TextInputType.url,
                           decoration: const InputDecoration(
                             labelText: "Logo Usaha",
@@ -241,6 +250,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           minLines: 2,
                           maxLines: 3,
                           keyboardType: TextInputType.multiline,
@@ -277,7 +287,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                                   : () {
                                 Navigator.pop(context);
                               },
-                              child: const Text("Kembali")),
+                              child: Text("Kembali", style: GoogleFonts.poppins())),
                           SizedBox(
                             width: 20.0,
                           ),
@@ -289,7 +299,7 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                                   _onSubmitBtnPressed(request, scaffoldMessenger);
                                 }
                               },
-                              child: const Text("Simpan")),
+                              child: Text("Simpan", style: GoogleFonts.poppins())),
                         ],
                       ),
                     ],

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mercatura/config/api_config.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
 import 'package:mercatura/umkm/api/umkm_api.dart';
 import 'package:mercatura/umkm/widgets/umkm_cards.dart';
 
 
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
+
 
 List<String> daftar_filter_bidang = ["Semua", ...daftar_bidang];
 List<String> daftar_filter_provinsi = ["Semua", ...daftar_provinsi];
 
 class UmkmListPage extends StatefulWidget {
   const UmkmListPage({super.key});
+
 
   @override
   State<UmkmListPage> createState() => _UmkmListPageState();
@@ -72,9 +75,14 @@ class _UmkmListPageState extends State<UmkmListPage> {
     // The rest of your widgets are down below
     return Scaffold(
       appBar: AppBar(
-        title: const Text("UMKM"),
+        title: Text(
+          "Daftar UMKM",
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
         children: [
           Padding(
@@ -87,10 +95,18 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Cari UMKM"),
+                        Text(
+                            "Cari UMKM",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                            ),
+                        ),
                         (request.loggedIn && request.cookies["user"] != null) ?
                         TextButton(
-                          child: Text("Tambah UMKM"),
+                          child: Text(
+                              "Tambah UMKM",
+                              style: GoogleFonts.poppins(),
+                          ),
                           onPressed: () {
                             Navigator.pushNamed(context, '/tambah_umkm');
                           },
@@ -101,6 +117,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        style: GoogleFonts.poppins(),
                         decoration: const InputDecoration(
                           labelText: "Kata Kunci",
                           border: OutlineInputBorder(),
@@ -119,8 +136,9 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     ),
                     ListTile(
                       leading: const Icon(Icons.class_),
-                      title: const Text(
+                      title: Text(
                         'Bidang',
+                        style: GoogleFonts.poppins(),
                       ),
                       trailing: DropdownButton(
                         value: _bidang_usaha,
@@ -128,7 +146,8 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         items: daftar_filter_bidang.map((String items) {
                           return DropdownMenuItem(
                             value: items,
-                            child: Text(items),
+                            child: Text(items,
+                              style: GoogleFonts.poppins()),
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
@@ -142,8 +161,9 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     ),
                     ListTile(
                       leading: const Icon(Icons.location_pin),
-                      title: const Text(
+                      title:  Text(
                         'Lokasi',
+                        style: GoogleFonts.poppins()
                       ),
                       trailing: DropdownButton(
                         value: _lokasi_usaha,
@@ -151,7 +171,8 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         items: daftar_filter_provinsi.map((String items) {
                           return DropdownMenuItem(
                             value: items,
-                            child: Text(items),
+                            child: Text(items,
+                                style: GoogleFonts.poppins()),
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
@@ -169,7 +190,8 @@ class _UmkmListPageState extends State<UmkmListPage> {
                             _onSubmitBtnPressed(request, scaffoldMessenger);
                           }
                         },
-                        child: const Text("Cari")),
+                        child: Text("Cari",
+                            style: GoogleFonts.poppins())),
                     const SizedBox(
                       height: 30,
                     ),
@@ -196,9 +218,10 @@ class _UmkmListPageState extends State<UmkmListPage> {
 
                       if (snapshot.data.length == 0) {
                         return Column(
-                          children: const [
+                          children:  [
                             Text(
                               "UMKM Tidak Ditemukan",
+                              style: GoogleFonts.poppins()
                             ),
                             SizedBox(height: 8),
                           ],

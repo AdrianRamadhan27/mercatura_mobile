@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:mercatura/umkm/pages/umkm_list_page.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
+
 
 
 class UmkmCards extends StatelessWidget {
@@ -48,21 +50,56 @@ class UmkmCards extends StatelessWidget {
                         ),
                       ),
           ),
-                title: Text(umkmList[index].fields.namaUsaha, style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(fontWeight: FontWeight.bold),),
-                subtitle: Text(
-                    umkmList[index].fields.deskripsiUsaha,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                title: Text(umkmList[index].fields.namaUsaha,
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                                color: (umkmList[index].fields.bidangUsaha == "Agribisnis") ?
+                                Colors.green : (umkmList[index].fields.bidangUsaha == "Kuliner") ?
+                                Colors.orange :
+                                Colors.red,
+                                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child:  Center(
+                                child:  Text("#" + umkmList[index].fields.bidangUsaha,
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: 12
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 7,
+                    ),
+                    Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Icon(Icons.location_pin, color: Colors.cyan,),
+                          Text(umkmList[index].fields.lokasiUsaha,
+                            style: GoogleFonts.poppins())
+                        ]
+                    ),
+                  ],
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextButton(
-                    child: const Text('Detail'),
+                    child:  Text('Detail',
+                        style: GoogleFonts.poppins()),
                     onPressed: () {
                       Navigator.pushNamed(context, '/detail_umkm', arguments: umkmList[index].pk);
                     },
@@ -70,7 +107,8 @@ class UmkmCards extends StatelessWidget {
                   const SizedBox(width: 8),
                   (request.cookies['user'] == umkmList[index].fields.pemilikUsaha) ?
                   TextButton(
-                    child: const Text('Edit'),
+                    child: Text('Edit',
+                        style: GoogleFonts.poppins()),
                     onPressed: () {
                       Navigator.pushNamed(context, '/update_umkm', arguments: umkmList[index]).then((_) {
                         refreshFunction();

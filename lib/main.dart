@@ -27,9 +27,50 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
-        title: 'Flutter App',
+        title: 'Mercatura',
         theme: ThemeData(
           primarySwatch: Colors.purple,
+          colorScheme: const ColorScheme.light(
+            primary: Color.fromRGBO(94, 35, 157, 1),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderSide: BorderSide(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                width: 1.2
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                width: 1.2,
+              ),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                width: 1.0,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                width: 1.2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                width: 1.2,
+              ),
+            ),
+          )
+
         ),
         home: const HomePage(),
         routes: {
