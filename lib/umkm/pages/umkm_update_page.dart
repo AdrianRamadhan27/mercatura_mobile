@@ -60,7 +60,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
     if (response["status"]) {
       final snackBar = SnackBar(content: Text(response["message"]));
       scaffoldMessenger.showSnackBar(snackBar);
-      Navigator.of(context).pushReplacementNamed("/detail_umkm", arguments: widget.umkmDetail.pk);
+      Navigator.of(context).pop();
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));
       scaffoldMessenger.showSnackBar(snackBar);
@@ -100,7 +100,13 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Edit UMKM " + _nama_usaha),
+                      Text(
+                          "Edit UMKM " + _nama_usaha,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
@@ -254,6 +260,8 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          minLines: 2,
+                          maxLines: 3,
                           initialValue: _deskripsi_usaha,
                           decoration: const InputDecoration(
                             labelText: "Deskripsi Usaha",
@@ -278,23 +286,31 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
 
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                            if (_formKey.currentState!.validate()) {
-                              _onSubmitBtnPressed(request, scaffoldMessenger);
-                            }
-                          },
-                          child: const Text("Submit")),
-                      const SizedBox(
-                        height: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          ElevatedButton(
+                              onPressed: isLoading
+                                  ? null
+                                  : () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Kembali")),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          ElevatedButton(
+                              onPressed: isLoading
+                                  ? null
+                                  : () {
+                                if (_formKey.currentState!.validate()) {
+                                  _onSubmitBtnPressed(request, scaffoldMessenger);
+                                }
+                              },
+                              child: const Text("Simpan")),
+                        ],
                       ),
-                      if (isLoading)
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: CircularProgressIndicator(),
-                        ),
                     ],
                   ),
                 ),

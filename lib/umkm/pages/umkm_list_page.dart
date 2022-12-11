@@ -3,13 +3,14 @@ import 'package:mercatura/config/api_config.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
 import 'package:mercatura/umkm/api/umkm_api.dart';
+import 'package:mercatura/umkm/widgets/umkm_cards.dart';
 
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-List<String> daftar_filter_bidang = [...daftar_bidang, "Semua"];
-List<String> daftar_filter_provinsi = [...daftar_provinsi, "Semua"];
+List<String> daftar_filter_bidang = ["Semua", ...daftar_bidang];
+List<String> daftar_filter_provinsi = ["Semua", ...daftar_provinsi];
 
 class UmkmListPage extends StatefulWidget {
   const UmkmListPage({super.key});
@@ -87,7 +88,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("Cari UMKM"),
-                        request.loggedIn ?
+                        (request.loggedIn && request.cookies["user"] != null) ?
                         TextButton(
                           child: Text("Tambah UMKM"),
                           onPressed: () {
@@ -119,7 +120,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     ListTile(
                       leading: const Icon(Icons.class_),
                       title: const Text(
-                        'Pilih Bidang Usaha',
+                        'Bidang',
                       ),
                       trailing: DropdownButton(
                         value: _bidang_usaha,
@@ -142,7 +143,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                     ListTile(
                       leading: const Icon(Icons.location_pin),
                       title: const Text(
-                        'Pilih Lokasi',
+                        'Lokasi',
                       ),
                       trailing: DropdownButton(
                         value: _lokasi_usaha,
@@ -211,64 +212,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
 
                         return Expanded(
                           child: SingleChildScrollView(
-                            child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (_, index)=> MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  onEnter: (event) {
-                                    setState(() {
-                                      daftar_warna[index] = Colors.red;
-                                    });
-                                  },
-                                  onExit: (event) {
-                                    setState(() {
-                                      daftar_warna[index] = Colors.blue;
-                                    });
-                                  },
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, '/detail_umkm', arguments:snapshot.data![index].pk);
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                      padding: const EdgeInsets.all(20.0),
-                                      decoration: BoxDecoration(
-                                          color:Colors.white,
-                                          border: Border.all(
-                                              color: daftar_warna[index],
-                                              width: 3.0
-                                          ),
-                                          borderRadius: BorderRadius.circular(15.0),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black,
-                                                blurRadius: 2.0
-                                            )
-                                          ]
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                              child: Image.network(snapshot.data![index].fields.logoUsaha,
-                                                  height:40)
-                                          ),
-                                          Text(
-                                            "${snapshot.data![index].fields.namaUsaha}",
-                                            style: const TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                )
-                            ),
+                            child: UmkmCards(umkmList: snapshot.data, refreshFunction: refresh),
                           ),
                         );
                       }

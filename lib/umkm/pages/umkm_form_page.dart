@@ -70,21 +70,28 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     // The rest of your widgets are down below
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Tambah UMKM"),
       ),
       drawer: const MyDrawer(),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Form(
+                  key: _formKey,
                   child: Column(
                     children: [
-                      Text("Form UMKM " + request.cookies["user"]!),
+                      Text(
+                        "Form UMKM " + request.cookies["user"]!,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
@@ -234,6 +241,9 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          minLines: 2,
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
                           decoration: const InputDecoration(
                               labelText: "Deskripsi Usaha",
                               border: OutlineInputBorder(),
@@ -257,31 +267,39 @@ class _UmkmFormPageState extends State<UmkmFormPage> {
 
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                            if (_formKey.currentState!.validate()) {
-                              _onSubmitBtnPressed(request, scaffoldMessenger);
-                            }
-                          },
-                          child: const Text("Submit")),
-                      const SizedBox(
-                        height: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          ElevatedButton(
+                              onPressed: isLoading
+                                  ? null
+                                  : () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Kembali")),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          ElevatedButton(
+                              onPressed: isLoading
+                                  ? null
+                                  : () {
+                                if (_formKey.currentState!.validate()) {
+                                  _onSubmitBtnPressed(request, scaffoldMessenger);
+                                }
+                              },
+                              child: const Text("Simpan")),
+                        ],
                       ),
-                      if (isLoading)
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: CircularProgressIndicator(),
-                        ),
                     ],
                   ),
                 ),
               ),
             ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
