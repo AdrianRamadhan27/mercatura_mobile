@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _MyHomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Mercatura"),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

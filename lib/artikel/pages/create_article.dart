@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/artikel/pages/discover_article.dart';
@@ -154,7 +155,8 @@ class _CreateArticleState extends State<CreateArticle> {
                           }
                         )
                       );
-                      if (!response['status']) {
+                      log(response.toString());
+                      if (response['status']) {
                         if (!mounted) return;
                         Navigator.pushReplacement(
                           context,
@@ -166,7 +168,7 @@ class _CreateArticleState extends State<CreateArticle> {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(
-                          'Insert a title & content!',
+                          'Isi semua dengan benar!',
                           style: TextStyle(
                             color: Colors.white,
                           ),

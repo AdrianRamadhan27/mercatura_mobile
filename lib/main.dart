@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/artikel/pages/article_list.dart';
 import 'package:mercatura/artikel/pages/create_article.dart';
 import 'package:mercatura/artikel/pages/detail_article.dart';
-import 'artikel/widget/drawer.dart';
 import 'artikel/pages/discover_article.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
