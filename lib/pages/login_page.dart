@@ -38,8 +38,9 @@ class _LoginPageState extends State<LoginPage> {
     request.headers["Referer"] = apiUrl;
     if (!mounted) return;
     if (request.loggedIn) {
-      const snackBar = SnackBar(content: Text("Berhasil login!"));
-      scaffoldMessenger.showSnackBar(snackBar);
+      String username = response["user"];
+      request.cookies["user"] = username;
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai "+username)));
       Navigator.of(context).pushReplacementNamed("/home");
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));
@@ -152,13 +153,14 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Belum Punya Akun?'),
               TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed("/register");
-                  },
-                  child: Text("Register"),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed("/register");
+                },
+                child: Text("Register"),
               )
             ],
           )
