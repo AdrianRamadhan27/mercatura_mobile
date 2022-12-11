@@ -185,13 +185,14 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Sudah Punya Akun?'),
+              const Text('Sudah Punya Akun?'),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed("/login");
                 },
-                child: Text("Login"),
+                child: const Text("Login"),
               )
             ],
           )
