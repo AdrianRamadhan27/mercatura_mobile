@@ -124,12 +124,12 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman login atau logout
-                if(request.loggedIn == false) {
-                  Navigator.of(context).pushReplacementNamed("/login");
-                } else {
+                if(request.loggedIn) {
                   logout(request);
                   const snackBar = SnackBar(content: Text("Berhasil logout!"));
                   scaffoldMessenger.showSnackBar(snackBar);
+                  Navigator.of(context).pushReplacementNamed("/login");
+                } else {
                   Navigator.of(context).pushReplacementNamed("/login");
                 }
               },
