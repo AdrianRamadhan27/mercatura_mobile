@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,9 +26,17 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mercatura"),
+        title: Text(
+          "Mercatura",
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold
+            )
+          ),
+        ),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

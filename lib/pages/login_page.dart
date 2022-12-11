@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mercatura/config/api_config.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Login"),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
         children: [
           Padding(
