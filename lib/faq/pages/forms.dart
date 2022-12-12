@@ -1,9 +1,9 @@
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
-import 'package:mercatura/main.dart';
-import 'package:mercatura/faq/pages/output.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:mercatura/config/api_config.dart';
@@ -45,33 +45,30 @@ class _FaqFormPageState extends State<FaqFormPage> {
               borderRadius: BorderRadius.circular(10),
             ),
             elevation: 15,
-            child: Container(
-              child: ListView(
-                padding: const EdgeInsets.only(
-                    top: 20, bottom: 20, right: 50, left: 50),
-                shrinkWrap: true,
-                children: <Widget>[
-                  Center(
-                      child: const Text(
-                          'Berhasil disimpan')),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    child: Text('Kembali'),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 120.0,
-                            vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10.0)),
-                        primary: Colors.blue),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+            child: ListView(
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 20, right: 50, left: 50),
+              shrinkWrap: true,
+              children: <Widget>[
+                const Center(
+                    child: Text(
+                        'Berhasil disimpan')),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 120.0,
+                          vertical: 25.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(10.0))),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Kembali'),
+                ),
 
-                ],
-              ),
+              ],
             ),
           );
         },
@@ -93,7 +90,7 @@ class _FaqFormPageState extends State<FaqFormPage> {
       appBar: AppBar(
         title: const Text('Create'),
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -150,38 +147,36 @@ class _FaqFormPageState extends State<FaqFormPage> {
                   });
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 85,
               ),
               Row(
                 children: [
                   ElevatedButton(
-                    child: Text('Simpan Data'),
                     style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 135.0, vertical: 25.0),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        primary: Colors.purpleAccent),
+                            borderRadius: BorderRadius.circular(10.0))),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _onSubmitBtnPressed(request, scaffoldMessenger);
                       }
                     },
+                    child: const Text('Simpan Data'),
                   ),
                   ElevatedButton(
-                    child: Text('Daftar FAQ'),
                     style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 120.0,
                             vertical: 25.0),
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.circular(10.0)),
-                        primary: Colors.blue),
+                            BorderRadius.circular(10.0)),),
                     onPressed: () {
                       Navigator.pushNamed(context, "/faq-output");
                     },
+                    child: const Text('Daftar FAQ'),
                   ),
                 ],
               ),

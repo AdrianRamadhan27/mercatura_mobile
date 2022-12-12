@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import '../widget/newest_article.dart';
 import '../widget/list_article.dart';
 import '../models/article.dart';
-import '../widget/drawer.dart';
 import '../utils/fetch_article.dart';
 
 class ArticlePage extends StatefulWidget {
@@ -59,7 +58,7 @@ class _ArticlePageState extends State<ArticlePage> {
                   padding: EdgeInsets.zero,
                   children: [
                     ArtikelTerbaru(articles: snapshot.data!),
-                    kumpulanArtikel(articles: snapshot.data!)
+                    KumpulanArtikel(articles: snapshot.data!)
                   ],
                 );
               }

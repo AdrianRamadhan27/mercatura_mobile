@@ -89,8 +89,7 @@ class MyApp extends StatelessWidget {
           "/artikel": (context) => const ArticlePage(),
           "/artikel/discover": (context) => const DiscoverPage(),
           "/artikel/create": (context) => const CreateArticle(),
-          "/artikel/detail": (context) => const ArticleDetail()
-
+          "/artikel/detail": (context) => const ArticleDetail(),
           "/faq": (BuildContext context) => const FaqFormPage(),
           "/faq-output": (BuildContext context) => const FaqOutputPage(),
           "/umkm": (BuildContext context) => const UmkmListPage(),

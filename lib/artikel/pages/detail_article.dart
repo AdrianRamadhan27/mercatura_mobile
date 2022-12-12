@@ -3,9 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:mercatura/artikel/widget/image_container.dart';
 import '../models/article.dart';
-import '../widget/custom_tag.dart';
-import '../widget/drawer.dart';
-import '../utils/fetch_article.dart';
+
 
 class ArticleDetail extends StatefulWidget {
   const ArticleDetail({super.key});

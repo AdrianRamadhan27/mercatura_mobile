@@ -6,8 +6,7 @@ import 'package:mercatura/artikel/pages/discover_article.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import '../../core/environments/endpoints.dart';
-import '../models/article.dart';
-import '../widget/drawer.dart';
+
 
 class CreateArticle extends StatefulWidget {
   const CreateArticle({Key? key}) : super(key: key);

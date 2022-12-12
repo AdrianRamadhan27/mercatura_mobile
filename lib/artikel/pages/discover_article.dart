@@ -6,7 +6,6 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import "../../custom_widgets/mydrawer.dart";
 import '../models/article.dart';
-import '../widget/drawer.dart';
 import '../utils/fetch_article.dart';
 
 class DiscoverPage extends StatefulWidget {
@@ -101,73 +100,70 @@ class _DiscoverPageState extends State<DiscoverPage> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Container(
-                          // height: MediaQuery.of(context).size.,
-                          child: ListView.builder(
-                            // scrollDirection: Axis.vertical,
-                            // physics: const AlwaysScrollableScrollPhysics(),
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: ((context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context, 
-                                    '/artikel/detail',
-                                    arguments: snapshot.data![index]
-                                  );
-                                },
-                                child: Row(
-                                  children: [
-                                    ImageContainer(opacity: 0, width: 100, height: 100, margin: const EdgeInsets.all(10.0), borderRadius: 5, imageUrl: snapshot.data![index].imageUrl),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            snapshot.data![index].title,
-                                            maxLines: 3,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
-                                                color: Color.fromRGBO(94, 35, 157, 1), 
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14
-                                              )
-                                            ),
+                        ListView.builder(
+                          // scrollDirection: Axis.vertical,
+                          // physics: const AlwaysScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: ((context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/artikel/detail',
+                                  arguments: snapshot.data![index]
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  ImageContainer(opacity: 0, width: 100, height: 100, margin: const EdgeInsets.all(10.0), borderRadius: 5, imageUrl: snapshot.data![index].imageUrl),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      // mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          snapshot.data![index].title,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.poppins(
+                                            textStyle: const TextStyle(
+                                              color: Color.fromRGBO(94, 35, 157, 1),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14
+                                            )
                                           ),
-                                          const SizedBox(height: 10),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.date_range_rounded,
-                                                size: 18,
-                                                color: Colors.grey.shade600,
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.date_range_rounded,
+                                              size: 18,
+                                              color: Colors.grey.shade600,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              dateFormatter(snapshot.data![index].date),
+                                              style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                  color: Colors.grey.shade600,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12
+                                                )
                                               ),
-                                              const SizedBox(width: 5),
-                                              Text(
-                                                dateFormatter(snapshot.data![index].date),                                  
-                                                style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                    color: Colors.grey.shade600, 
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12
-                                                  )
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              );
-                            })
-                          ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          })
                         )
                       ],
                     )

@@ -1,9 +1,6 @@
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
-import 'package:mercatura/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mercatura/faq/pages/forms.dart';
 import 'package:mercatura/faq/utils/fetch.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -39,13 +36,13 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar FAQ'),
+        title: const Text('Daftar FAQ'),
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
@@ -89,19 +86,14 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                           children: <Widget>[
                             ListTile(
                               title: Padding(
-                                padding: EdgeInsets.all(7.0),
+                                padding: const EdgeInsets.all(7.0),
                                 child: Text(snapshot.data[index].fields.user,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 20.0)),
                               ),
                               subtitle: Text(
-                                'Judul: ' +
-                                    snapshot.data[index].fields.title +
-                                    '\n' +
-                                    'Tipe: ' +
-                                    snapshot.data[index].fields.description
-
+                                'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
                               ),
                             ),
                           ],

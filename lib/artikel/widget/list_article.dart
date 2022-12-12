@@ -4,8 +4,8 @@ import '../models/article.dart';
 import 'image_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class kumpulanArtikel extends StatelessWidget {
-  const kumpulanArtikel({
+class KumpulanArtikel extends StatelessWidget {
+  const KumpulanArtikel({
     Key? key,
     required this.articles
   }) : super(key: key);
