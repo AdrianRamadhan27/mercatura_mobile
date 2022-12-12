@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/config/api_config.dart';
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     if (request.loggedIn) {
       String username = response["user"];
       request.cookies["user"] = username;
-      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai "+username)));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai $username")));
       Navigator.of(context).pushReplacementNamed("/home");
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));
