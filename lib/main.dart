@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mercatura/artikel/pages/article_list.dart';
+import 'package:mercatura/artikel/pages/create_article.dart';
+import 'package:mercatura/artikel/pages/detail_article.dart';
+import 'artikel/pages/discover_article.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
+
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +86,11 @@ class MyApp extends StatelessWidget {
           "/home": (BuildContext context) => const HomePage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
+          "/artikel": (context) => const ArticlePage(),
+          "/artikel/discover": (context) => const DiscoverPage(),
+          "/artikel/create": (context) => const CreateArticle(),
+          "/artikel/detail": (context) => const ArticleDetail()
+
           "/faq": (BuildContext context) => const FaqFormPage(),
           "/faq-output": (BuildContext context) => const FaqOutputPage(),
           "/umkm": (BuildContext context) => const UmkmListPage(),
@@ -102,4 +112,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 

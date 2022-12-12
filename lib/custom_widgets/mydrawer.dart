@@ -13,6 +13,8 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    String? route = ModalRoute.of(context)?.settings.name;
+
     // TODO: implement build
     return Drawer(
       child: Column(
@@ -57,7 +59,40 @@ class MyDrawer extends StatelessWidget {
 
             },
           ),
+          ListTile(
+            title: const Text('Kumpulan Artikel'),
+            onTap: () {
+              // ke homepage
+              if (route == '/artikel') {
+                Navigator.pop(context);
+              } else {
+                Navigator.pushReplacementNamed(context, '/artikel');
+              }
+            },
+          ),
 
+          ListTile(
+            title: const Text('List Artikel'),
+            onTap: () {
+              // ke homepage
+              if (route == '/artikel/discover') {
+                Navigator.pop(context);
+              } else {
+                Navigator.pushReplacementNamed(context, '/artikel/discover');
+              }
+            },
+          ),
+
+          ListTile(
+            title: const Text('Tambah Artikel'),
+            onTap: () {
+              if (route == '/artikel/create') {
+                Navigator.pop(context);
+              } else {
+                Navigator.pushReplacementNamed(context, '/artikel/create');
+              }
+            },
+          ),
         ],
       ),
     );
