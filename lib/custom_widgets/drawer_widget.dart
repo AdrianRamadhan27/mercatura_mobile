@@ -4,6 +4,7 @@ import 'package:mercatura/api/pengguna_api.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
+
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
 
@@ -57,7 +58,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/artikel");
               },
             ),
             ListTile(
@@ -72,7 +73,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/umkm");
               },
             ),
             ListTile(
@@ -102,12 +103,12 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/faq");
               },
             ),
             ListTile(
-              leading: request.loggedIn? const Icon(Icons.logout_outlined, color: Color.fromARGB(255, 250, 124, 223)) : const Icon(Icons.login_rounded, color: Color.fromARGB(255, 250, 124, 223)),
-              title: request.loggedIn? Text(
+              leading: (request.loggedIn  && request.cookies["user"] != null)? const Icon(Icons.logout_outlined, color: Color.fromARGB(255, 250, 124, 223)) : const Icon(Icons.login_rounded, color: Color.fromARGB(255, 250, 124, 223)),
+              title: (request.loggedIn && request.cookies["user"] != null)? Text(
                 "Logout",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
@@ -124,7 +125,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman login atau logout
-                if(request.loggedIn) {
+                if(request.loggedIn  && request.cookies["user"] != null) {
                   logout(request);
                   const snackBar = SnackBar(content: Text("Berhasil logout!"));
                   scaffoldMessenger.showSnackBar(snackBar);
