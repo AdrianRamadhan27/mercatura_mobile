@@ -182,8 +182,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Wrap(
-            alignment: WrapAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Belum Punya Akun?',
