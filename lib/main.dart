@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
+import 'package:mercatura/faq/pages/forms.dart';
+import 'package:mercatura/faq/pages/output.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
           "/home": (BuildContext context) => const HomePage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
+          "/faq": (BuildContext context) => const FaqFormPage(),
+          "/faq-output": (BuildContext context) => const FaqOutputPage(),
         },
       ),
     );
