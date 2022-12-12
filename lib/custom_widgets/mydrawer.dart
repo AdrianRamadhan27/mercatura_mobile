@@ -40,6 +40,13 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            title: const Text('FAQ'),
+            onTap: () {
+              // Route menu ke halaman utama
+              Navigator.of(context).pushReplacementNamed("/faq");
+            },
+          ),
+          ListTile(
             title: const Text('Logout'),
             onTap: () {
               // Route menu ke halaman utama

@@ -4,6 +4,7 @@ import 'package:mercatura/api/pengguna_api.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
+
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
 
@@ -102,7 +103,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/faq");
               },
             ),
             ListTile(
