@@ -139,7 +139,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                       ListTile(
                         leading: const Icon(Icons.class_),
                         title: Text(
-                          'Pilih Bidang Usaha',
+                          'Bidang',
                           style: GoogleFonts.poppins(),
                         ),
                         trailing: DropdownButton(
@@ -163,7 +163,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                       ListTile(
                         leading: const Icon(Icons.location_pin),
                         title: Text(
-                          'Pilih Lokasi Usaha',
+                          'Lokasi',
                           style: GoogleFonts.poppins(),
                         ),
                         trailing: DropdownButton(

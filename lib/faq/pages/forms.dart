@@ -95,93 +95,97 @@ class _FaqFormPageState extends State<FaqFormPage> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                // Input Judul
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Masukkan teks",
-                    labelText: "Masukkan teks",
-                    // Menambahkan circular border agar lebih rapi
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  // Input Judul
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Masukkan teks",
+                      labelText: "Masukkan teks",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                     ),
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        _title = value!;
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        _title = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Tidak boleh kosong!';
+                      }
+                      return null;
+                    },
                   ),
-                  // Menambahkan behavior saat nama diketik
-                  onChanged: (String? value) {
+                ),
+
+                DropdownButton(
+                  value: _description,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  items: descriptionstatus.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
                     setState(() {
-                      _title = value!;
+                      _description = newValue!;
                     });
-                  },
-                  // Menambahkan behavior saat data disimpan
-                  onSaved: (String? value) {
-                    setState(() {
-                      _title = value!;
-                    });
-                  },
-                  // Validator sebagai validasi form
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Tidak boleh kosong!';
-                    }
-                    return null;
                   },
                 ),
-              ),
+                const SizedBox(
+                  height: 85,
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  runSpacing: 10,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 135.0, vertical: 25.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0))),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _onSubmitBtnPressed(request, scaffoldMessenger);
+                        }
+                      },
+                      child: const Text('Simpan Data'),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 120.0,
+                              vertical: 25.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.circular(10.0)),),
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/faq-output");
+                      },
+                      child: const Text('Daftar FAQ'),
+                    ),
+                  ],
+                ),
 
-              DropdownButton(
-                value: _description,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: descriptionstatus.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _description = newValue!;
-                  });
-                },
-              ),
-              const SizedBox(
-                height: 85,
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 135.0, vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0))),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _onSubmitBtnPressed(request, scaffoldMessenger);
-                      }
-                    },
-                    child: const Text('Simpan Data'),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 120.0,
-                            vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10.0)),),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/faq-output");
-                    },
-                    child: const Text('Daftar FAQ'),
-                  ),
-                ],
-              ),
-
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -21,6 +21,7 @@ class UmkmCards extends StatelessWidget {
 
     // TODO: implement build
     return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: umkmList.length,

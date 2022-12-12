@@ -66,93 +66,95 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                   flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                            children: [
-                              Text(
-                                snapshot.data.fields.namaUsaha,
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30
-                                  )
-                              ),
-                              const SizedBox(height: 16),
-                              Wrap(
-                                alignment: WrapAlignment.center,
-                                children: [
-                                  Wrap(
-                                    crossAxisAlignment: WrapCrossAlignment.center,
-                                    children: [
-                                      const Icon(Icons.location_pin),
-                                      Text(snapshot.data.fields.lokasiUsaha, style: GoogleFonts.poppins())
-                                    ]
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Wrap(
+                    child: SingleChildScrollView(
+                      child: Column(
+                              children: [
+                                Text(
+                                  snapshot.data.fields.namaUsaha,
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30
+                                    )
+                                ),
+                                const SizedBox(height: 16),
+                                Wrap(
+                                  alignment: WrapAlignment.center,
+                                  children: [
+                                    Wrap(
                                       crossAxisAlignment: WrapCrossAlignment.center,
                                       children: [
-                                        const Icon(Icons.email),
-                                        Text(snapshot.data.fields.emailUsaha, style: GoogleFonts.poppins())
+                                        const Icon(Icons.location_pin),
+                                        Text(snapshot.data.fields.lokasiUsaha, style: GoogleFonts.poppins())
                                       ]
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Container(
-                                  decoration: const BoxDecoration(
-                                      color: Colors.pink,
-                                      borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                  child:  Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child:  Text(snapshot.data.fields.deskripsiUsaha,
-                                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
-                                        textAlign: TextAlign.center,),
                                     ),
-                                  )),
-                              const SizedBox(height: 16),
+                                    const SizedBox(width: 10),
+                                    Wrap(
+                                        crossAxisAlignment: WrapCrossAlignment.center,
+                                        children: [
+                                          const Icon(Icons.email),
+                                          Text(snapshot.data.fields.emailUsaha, style: GoogleFonts.poppins())
+                                        ]
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                Container(
+                                    decoration: const BoxDecoration(
+                                        color: Colors.pink,
+                                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                    child:  Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child:  Text(snapshot.data.fields.deskripsiUsaha,
+                                          style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
+                                          textAlign: TextAlign.center,),
+                                      ),
+                                    )),
+                                const SizedBox(height: 16),
 
-                              Wrap(
-                                runSpacing: 12,
-                                alignment: WrapAlignment.center,
-                                children: [
-                                  FloatingActionButton.extended(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    heroTag: 'back',
-                                    elevation: 0,
-                                    label: Text("Kembali", style: GoogleFonts.poppins(fontSize: 12)),
-                                    icon: const Icon(Icons.arrow_back),
-                                  ),
-                                  const SizedBox(width: 16.0),
-                                  FloatingActionButton.extended(
-                                    onPressed: () {
-                                      Clipboard.setData(ClipboardData(text: snapshot.data.fields.websiteUsaha));
-                                      scaffoldMessenger.showSnackBar(const SnackBar(content: Text("Url Website Copied")));
-                                    },
-                                    heroTag: 'url',
-                                    elevation: 0,
-                                    label: Text("Copy Url Website", style: GoogleFonts.poppins(fontSize: 12)),
-                                    icon: const Icon(Icons.copy),
-                                  ),
-                                  const SizedBox(width: 16.0),
-                                  (request.cookies['user'] == snapshot.data.fields.pemilikUsaha) ?
-                                  FloatingActionButton.extended(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/update_umkm', arguments: snapshot.data).then((_) {
-                                        refresh();
-                                      });
-                                    },
-                                    heroTag: 'edit',
-                                    elevation: 0,
-                                    label:  Text("Edit", style: GoogleFonts.poppins(fontSize: 12)),
-                                    icon: const Icon(Icons.edit),
-                                  ) :
-                                  Container(),
-                                ],
-                              ),
-                            ],
-                          ),
+                                Wrap(
+                                  runSpacing: 12,
+                                  alignment: WrapAlignment.center,
+                                  children: [
+                                    FloatingActionButton.extended(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      heroTag: 'back',
+                                      elevation: 0,
+                                      label: Text("Kembali", style: GoogleFonts.poppins(fontSize: 12)),
+                                      icon: const Icon(Icons.arrow_back),
+                                    ),
+                                    const SizedBox(width: 16.0),
+                                    FloatingActionButton.extended(
+                                      onPressed: () {
+                                        Clipboard.setData(ClipboardData(text: snapshot.data.fields.websiteUsaha));
+                                        scaffoldMessenger.showSnackBar(const SnackBar(content: Text("Url Website Copied")));
+                                      },
+                                      heroTag: 'url',
+                                      elevation: 0,
+                                      label: Text("Copy Url Website", style: GoogleFonts.poppins(fontSize: 12)),
+                                      icon: const Icon(Icons.copy),
+                                    ),
+                                    const SizedBox(width: 16.0),
+                                    (request.cookies['user'] == snapshot.data.fields.pemilikUsaha) ?
+                                    FloatingActionButton.extended(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/update_umkm', arguments: snapshot.data).then((_) {
+                                          refresh();
+                                        });
+                                      },
+                                      heroTag: 'edit',
+                                      elevation: 0,
+                                      label:  Text("Edit", style: GoogleFonts.poppins(fontSize: 12)),
+                                      icon: const Icon(Icons.edit),
+                                    ) :
+                                    Container(),
+                                  ],
+                                ),
+                              ],
+                            ),
+                    ),
                   ),
                 )
               ],

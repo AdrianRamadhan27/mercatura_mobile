@@ -71,6 +71,8 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                   );
                 } else {
                   return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => Container(
                       margin: const EdgeInsets.symmetric(

@@ -215,8 +215,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
             children: [
 
               Text(
