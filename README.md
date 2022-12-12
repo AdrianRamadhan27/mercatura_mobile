@@ -1,6 +1,6 @@
 [![Staging](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/staging.yml/badge.svg?branch=staging)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/staging.yml)
 
-[![Pre-Release](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml/badge.svg?branch=main)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml)
+[![Pre-Release](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml/badge.svg?branch=staging)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml)
 
 [![Release](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/release.yml)
 
