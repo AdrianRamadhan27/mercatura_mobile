@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
-import 'package:intl/intl_browser.dart';
 import '../models/kritiksaran.dart';
 // import 'package:google_fonts/google_fonts.dart';
 

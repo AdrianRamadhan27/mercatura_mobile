@@ -23,6 +23,8 @@ class _ShowKritikSaranPageState extends State<ShowKritikSaranPage> {
 
     @override
     Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,

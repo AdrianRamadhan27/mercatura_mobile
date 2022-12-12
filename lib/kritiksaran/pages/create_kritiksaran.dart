@@ -11,7 +11,7 @@ import '../pages/show_kritiksaran.dart';
 
 class CreateKritikSaran extends StatefulWidget {
     const CreateKritikSaran({Key? key}): super(key: key);
-
+    @override
     State<CreateKritikSaran> createState() => _CreateKritikSaranState();
 }
 
@@ -44,6 +44,8 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
             body: SafeArea(
                 child: Form(
                     key: _formKey,
+                    child: Padding(
+                        padding: const EdgeInsets.all(20.0),
                     child: Column(
                         children: [
                             const SizedBox(height :10),
@@ -165,6 +167,7 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
                 )
 
                         ],
+                    ),
                     ),
                 ),
             ),
