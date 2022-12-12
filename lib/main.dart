@@ -7,9 +7,9 @@ import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
 import 'package:mercatura/kritiksaran/pages/create_kritiksaran.dart';
-import 'package:mercatura/kritiksaran/pages/create_kritiksaran_local.dart';
+import 'package:mercatura/kritiksaran/pages/show_kritiksaran_anon.dart';
 import 'package:mercatura/kritiksaran/pages/show_kritiksaran.dart';
-import 'package:mercatura/kritiksaran/pages/show_kritiksaran_local.dart';
+import 'package:mercatura/kritiksaran/pages/create_kritiksaran_anon.dart';
 
 
 
@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
           "/register": (BuildContext context) => const RegisterPage(),
           "/buatKritikSaran": (BuildContext context) => const CreateKritikSaran(),
           "/lihatKritikSaran": (BuildContext context) => const ShowKritikSaranPage(),
-          '/buatlokal': (BuildContext context) => const KritikSaranForm(),
-          '/liatlokal': (BuildContext context) => const ShowKritikSaranAnon(),
+          "/buatlokal": (BuildContext context) =>  KritikSaranForm(),
+          "/liatlokal": (BuildContext context) =>  ShowKritikSaranAnon(),
 
 
         },
