@@ -1,9 +1,7 @@
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
-import 'package:mercatura/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mercatura/faq/pages/forms.dart';
 import 'package:mercatura/faq/utils/fetch.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';

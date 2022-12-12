@@ -1,6 +1,5 @@
 import 'package:mercatura/faq/models/faq.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 
 import 'package:mercatura/config/api_config.dart';
 

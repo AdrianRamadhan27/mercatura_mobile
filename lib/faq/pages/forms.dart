@@ -1,9 +1,6 @@
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
-import 'package:mercatura/main.dart';
-import 'package:mercatura/faq/pages/output.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:mercatura/config/api_config.dart';
@@ -153,15 +150,12 @@ class _FaqFormPageState extends State<FaqFormPage> {
               SizedBox(
                 height: 85,
               ),
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     child: Text('Simpan Data'),
                     style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 135.0, vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
                         primary: Colors.purpleAccent),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -169,22 +163,15 @@ class _FaqFormPageState extends State<FaqFormPage> {
                       }
                     },
                   ),
-                  ElevatedButton(
+                  TextButton(
                     child: Text('Daftar FAQ'),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 120.0,
-                            vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10.0)),
-                        primary: Colors.blue),
                     onPressed: () {
                       Navigator.pushNamed(context, "/faq-output");
                     },
                   ),
                 ],
               ),
+
 
             ],
           ),
