@@ -215,10 +215,9 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
           ),
-          Wrap(
-            alignment: WrapAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Text(
                 'Sudah Punya Akun?',
                 style: GoogleFonts.poppins(
