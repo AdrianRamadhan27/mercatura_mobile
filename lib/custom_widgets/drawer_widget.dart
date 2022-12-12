@@ -89,6 +89,7 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 // Route menu ke halaman utama
                 Navigator.of(context).pushReplacementNamed("/lihatKritikSaran");
+
               },
             ),
             ListTile(
@@ -125,6 +126,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman login atau logout
+
                 if(request.loggedIn  && request.cookies["user"] != null) {
                   logout(request);
                   const snackBar = SnackBar(content: Text("Berhasil logout!"));
