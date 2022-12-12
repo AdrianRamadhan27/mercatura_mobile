@@ -3,7 +3,7 @@ import '../models/kritiksaran.dart';
 import 'dart:convert';
 
 Future<List<KritikSaran>> fetchKritikSaran() async {
-    var url = Uri.parse('http://localhost:8000/kritiksaran/json');
+    var url = Uri.parse('https://mercatura-id.up.railway.app/');
     var response = await http.get(
         url,
         headers: {
