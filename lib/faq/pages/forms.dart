@@ -25,8 +25,9 @@ class _FaqFormPageState extends State<FaqFormPage> {
   Future<void> _onSubmitBtnPressed(CookieRequest request,
       ScaffoldMessengerState scaffoldMessenger) async {
     // 'username' and 'password' should be the values of the user login form.
+    String username = request.cookies["user"]!;
     final Map<String, dynamic> response = await request.post("$apiUrl/faq/create_faq_json/", {
-      'username': request.cookies["user"],
+      'username': username,
       'title': _title,
       'description': _description,
     });

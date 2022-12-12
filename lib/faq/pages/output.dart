@@ -39,7 +39,7 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambah Budget'),
+        title: Text('Daftar FAQ'),
       ),
       drawer: DrawerWidget(),
       body: Stack(
@@ -73,54 +73,46 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                     ],
                   );
                 } else {
-                  return SingleChildScrollView(
-                    child: ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          margin: EdgeInsets.all(10),
-                          elevation: 20,
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  color: Color.fromARGB(255, 171, 210, 249),
-                                  width: 3),
-                              borderRadius: BorderRadius.all(Radius.circular(15))),
-                          shadowColor: Colors.green[100],
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(
-                                    IconData(0xe3f8, fontFamily: 'MaterialIcons'),
-                                    color: Colors.cyan,
-                                    size: 45),
-                                title: Padding(
-                                  padding: EdgeInsets.all(7.0),
-                                  child: Text(snapshot.data[index].fields.user,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20.0)),
-                                ),
-                                subtitle: Text(
-                                  'Input            : ' +
-                                      snapshot.data[index].fields.title +
-                                      '\n' +
-                                      'Jenis    : ' +
-                                      snapshot.data[index].fields.description,
-                                  style: TextStyle(fontSize: 18.0),
-                                ),
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: const [
+                          ]),
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: Padding(
+                                padding: EdgeInsets.all(7.0),
+                                child: Text(snapshot.data[index].fields.user,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20.0)),
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                              subtitle: Text(
+                                'Judul: ' +
+                                    snapshot.data[index].fields.title +
+                                    '\n' +
+                                    'Tipe: ' +
+                                    snapshot.data[index].fields.description
 
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
                 }
               }
             },
-          ),
+          )
         ],
       ),
     );
