@@ -151,11 +151,14 @@ class _FaqFormPageState extends State<FaqFormPage> {
                 height: 85,
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     child: Text('Simpan Data'),
                     style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 135.0, vertical: 25.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
                         primary: Colors.purpleAccent),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -172,7 +175,6 @@ class _FaqFormPageState extends State<FaqFormPage> {
                 ],
               ),
 
-
             ],
           ),
         ),
@@ -180,4 +182,3 @@ class _FaqFormPageState extends State<FaqFormPage> {
     );
   }
 }
-

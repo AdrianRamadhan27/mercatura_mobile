@@ -2,7 +2,6 @@
 //
 //     final faq = faqFromJson(jsonString);
 
-import 'dart:convert';
 
 class Faq {
   Faq({
