@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/config/api_config.dart';
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -219,6 +218,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Text(
                 'Sudah Punya Akun?',
                 style: GoogleFonts.poppins(
@@ -227,6 +227,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   )
                 ),
               ),
+
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed("/login");

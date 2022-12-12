@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:mercatura/main.dart';
-import 'package:mercatura/pages/login_page.dart';
+
 import 'package:mercatura/api/pengguna_api.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +32,20 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               // Route menu ke halaman utama
               Navigator.of(context).pushReplacementNamed("/login");
+            },
+          ),
+          ListTile(
+            title: const Text('UMKM'),
+            onTap: () {
+              // Route menu ke halaman utama
+              Navigator.of(context).pushReplacementNamed("/umkm");
+            },
+          ),
+          ListTile(
+            title: const Text('FAQ'),
+            onTap: () {
+              // Route menu ke halaman utama
+              Navigator.of(context).pushReplacementNamed("/faq");
             },
           ),
           ListTile(
