@@ -1,5 +1,10 @@
-[![Build status](https://build.appcenter.ms/v0.1/apps/bd9aa5e5-8f5a-463b-9eb5-a901b274c59b/branches/main/badge)](https://appcenter.ms)
+[![Staging](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/staging.yml/badge.svg?branch=staging)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/staging.yml)
 
+[![Pre-Release](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml/badge.svg?branch=main)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/pre-release.yml)
+
+[![Release](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/AdrianRamadhan27/mercatura_mobile/actions/workflows/release.yml)
+
+[![Build status](https://build.appcenter.ms/v0.1/apps/bd9aa5e5-8f5a-463b-9eb5-a901b274c59b/branches/main/badge)](https://appcenter.ms)
 
 # Tugas Kelompok Akhir Semester PBP - Mercatura
 
