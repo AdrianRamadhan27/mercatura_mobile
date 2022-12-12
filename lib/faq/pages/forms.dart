@@ -1,11 +1,12 @@
-import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
 import 'package:mercatura/main.dart';
 import 'package:mercatura/faq/pages/output.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:mercatura/config/api_config.dart';
 List<Fields> listModel = [];
 
 class FaqFormPage extends StatefulWidget {
@@ -17,14 +18,76 @@ class FaqFormPage extends StatefulWidget {
 
 class _FaqFormPageState extends State<FaqFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _user = "";
   String _title = "";
   String _description = "Question";
   List<String> descriptionstatus = ["Question", "Answer"];
 
+  Future<void> _onSubmitBtnPressed(CookieRequest request,
+      ScaffoldMessengerState scaffoldMessenger) async {
+    // 'username' and 'password' should be the values of the user login form.
+    final Map<String, dynamic> response = await request.post("$apiUrl/faq/create_faq_json/", {
+      'username': request.cookies["user"],
+      'title': _title,
+      'description': _description,
+    });
+    request.headers["X-CSRFToken"] = request.cookies["csrftoken"] ?? "";
+    request.headers["Referer"] = apiUrl;
+    if (!mounted) return;
+    if (response["status"]) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            backgroundColor:
+            Colors.white70,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            elevation: 15,
+            child: Container(
+              child: ListView(
+                padding: const EdgeInsets.only(
+                    top: 20, bottom: 20, right: 50, left: 50),
+                shrinkWrap: true,
+                children: <Widget>[
+                  Center(
+                      child: const Text(
+                          'Berhasil disimpan')),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    child: Text('Kembali'),
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 120.0,
+                            vertical: 25.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(10.0)),
+                        primary: Colors.blue),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      final snackBar = SnackBar(content: Text(response["message"]));
+      scaffoldMessenger.showSnackBar(snackBar);
+    }
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create'),
@@ -89,64 +152,39 @@ class _FaqFormPageState extends State<FaqFormPage> {
               SizedBox(
                 height: 85,
               ),
-              ElevatedButton(
-                child: Text('Simpan Data'),
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 135.0, vertical: 25.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    primary: Colors.purpleAccent),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    final faq = Fields(
-                        user: _user,
-                        title: _title,
-                        description: _description);
-                    listModel.add(faq);
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          backgroundColor:
-                          Colors.white70,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.only(
-                                  top: 20, bottom: 20, right: 50, left: 50),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Center(
-                                    child: const Text(
-                                        'Berhasil disimpan')),
-                                SizedBox(height: 20),
-                                ElevatedButton(
-                                  child: Text('Kembali'),
-                                  style: ElevatedButton.styleFrom(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 120.0,
-                                          vertical: 25.0),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                      primary: Colors.blue),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
+              Row(
+                children: [
+                  ElevatedButton(
+                    child: Text('Simpan Data'),
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 135.0, vertical: 25.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        primary: Colors.purpleAccent),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _onSubmitBtnPressed(request, scaffoldMessenger);
+                      }
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text('Daftar FAQ'),
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 120.0,
+                            vertical: 25.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(10.0)),
+                        primary: Colors.blue),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/faq-output");
+                    },
+                  ),
+                ],
               ),
+
             ],
           ),
         ),

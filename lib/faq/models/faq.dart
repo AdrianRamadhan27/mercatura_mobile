@@ -4,6 +4,30 @@
 
 import 'dart:convert';
 
+class Faq {
+  Faq({
+    required this.model,
+    required this.pk,
+    required this.fields,
+  });
+
+  String model;
+  int pk;
+  Fields fields;
+
+  factory Faq.fromJson(Map<String, dynamic> json) => Faq(
+    model: json["model"],
+    pk: json["pk"],
+    fields: Fields.fromJson(json["fields"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "model": model,
+    "pk": pk,
+    "fields": fields.toJson(),
+  };
+}
+
 class Fields {
   Fields({
     required this.user,
