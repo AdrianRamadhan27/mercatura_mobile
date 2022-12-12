@@ -77,7 +77,7 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
+                          horizontal: 10, vertical: 10),
                       padding: const EdgeInsets.all(20.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
@@ -92,11 +92,16 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                                 padding: const EdgeInsets.all(7.0),
                                 child: Text(snapshot.data[index].fields.user,
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 20.0)),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30.0)),
                               ),
-                              subtitle: Text(
-                                'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
+                              subtitle: Padding(
+                                  padding: const EdgeInsets.all(7.0),
+                                  child: Text('Teks: ${snapshot.data[index].fields.title}\n''Tipe: ${snapshot.data[index].fields.description}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 25.0),
+                                  ),
                               ),
                             ),
                           ],
