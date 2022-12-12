@@ -47,6 +47,21 @@ class DrawerWidget extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.book, color: Color.fromARGB(255, 251, 130, 204)),
+              title: Text(
+                "Tambah Kisah",
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.of(context).pushReplacementNamed("/form_kisah");
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.article, color: Color.fromARGB(255, 250, 124, 223)),
               title: Text(
                 "Artikel",

@@ -46,16 +46,16 @@ class Fields {
   String usia;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-    nama: json["nama"],
-    bidang: json["bidang"],
-    deskripsi: json["deskripsi"],
-    usia: json["usia"],
+    nama: json["name"],
+    bidang: json["workfield"],
+    deskripsi: json["description"],
+    usia: json["age"],
   );
 
   Map<String, dynamic> toJson() => {
-    "nama": nama,
-    "bidang": bidang,
-    "deskripsi": deskripsi,
-    "usia": usia,
+    "name": nama,
+    "workfield": bidang,
+    "description": deskripsi,
+    "age": usia,
   };
 }

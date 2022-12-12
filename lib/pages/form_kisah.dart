@@ -1,9 +1,8 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/models/kisah.dart';
-import 'package:mercatura/main.dart';
-import 'package:mercatura/pages/home_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:mercatura/config/api_config.dart';
@@ -26,9 +25,7 @@ class _KisahFormPageState extends State<KisahFormPage> {
   Future<void> _onSubmitBtnPressed(CookieRequest request,
       ScaffoldMessengerState scaffoldMessenger) async {
     // 'username' and 'password' should be the values of the user login form.
-    String username = request.cookies["user"]!;
-    final Map<String, dynamic> response = await request.post("$apiUrl/home/create_kisah_json/", {
-      'username': username,
+    final Map<String, dynamic> response = await request.post("$apiUrl/create_kisah_json/", {
       'name': _name,
       'age': _age,
       'workfield': _workfield,
@@ -48,33 +45,30 @@ class _KisahFormPageState extends State<KisahFormPage> {
               borderRadius: BorderRadius.circular(10),
             ),
             elevation: 15,
-            child: Container(
-              child: ListView(
-                padding: const EdgeInsets.only(
-                    top: 20, bottom: 20, right: 50, left: 50),
-                shrinkWrap: true,
-                children: <Widget>[
-                  Center(
-                      child: const Text(
-                          'Berhasil disimpan')),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    child: Text('Kembali'),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 120.0,
-                            vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10.0)),
-                        primary: Colors.blue),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+            child: ListView(
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 20, right: 50, left: 50),
+              shrinkWrap: true,
+              children: <Widget>[
+                const Center(
+                    child: Text(
+                        'Berhasil disimpan')),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 120.0,
+                          vertical: 25.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(10.0))),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Kembali'),
+                ),
 
-                ],
-              ),
+              ],
             ),
           );
         },
@@ -96,7 +90,7 @@ class _KisahFormPageState extends State<KisahFormPage> {
       appBar: AppBar(
         title: Text('Kisah UMKM', style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -109,8 +103,8 @@ class _KisahFormPageState extends State<KisahFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Masukkan teks",
-                    labelText: "Masukkan teks",
+                    hintText: "Nama",
+                    labelText: "Masukkan nama",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -143,8 +137,8 @@ class _KisahFormPageState extends State<KisahFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Masukkan teks",
-                    labelText: "Masukkan teks",
+                    hintText: "Masukkan usia",
+                    labelText: "Masukkan usia",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -177,8 +171,8 @@ class _KisahFormPageState extends State<KisahFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Masukkan teks",
-                    labelText: "Masukkan teks",
+                    hintText: "Bidang",
+                    labelText: "Masukkan bidang",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -252,41 +246,21 @@ class _KisahFormPageState extends State<KisahFormPage> {
                   });
                 },
               ),*/
-              SizedBox(
+              const SizedBox(
                 height: 85,
               ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    child: Text('Simpan Data'),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 135.0, vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        primary: Colors.purpleAccent),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _onSubmitBtnPressed(request, scaffoldMessenger);
-                      }
-                    },
-                  ),
-                  ElevatedButton(
-                    child: Text('Kirim Kisah'),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 120.0,
-                            vertical: 25.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10.0)),
-                        primary: Colors.blue),
-                    onPressed: () {
-                      // --------------------------------------------------------
-                      Navigator.pushNamed(context, "/kisah-output");
-                    },
-                  ),
-                ],
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 135.0, vertical: 25.0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _onSubmitBtnPressed(request, scaffoldMessenger);
+                  }
+                },
+                child: const Text('Simpan Data'),
               ),
 
             ],
