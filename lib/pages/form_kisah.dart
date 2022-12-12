@@ -9,26 +9,29 @@ import 'package:provider/provider.dart';
 import 'package:mercatura/config/api_config.dart';
 List<Fields> listModel = [];
 
-class FaqFormPage extends StatefulWidget {
-  const FaqFormPage({super.key});
+class KisahFormPage extends StatefulWidget {
+  const KisahFormPage({super.key});
 
   @override
-  State<FaqFormPage> createState() => _FaqFormPageState();
+  State<KisahFormPage> createState() => _KisahFormPageState();
 }
 
-class _FaqFormPageState extends State<FaqFormPage> {
+class _KisahFormPageState extends State<KisahFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _title = "";
-  String _description = "Question";
-  List<String> descriptionstatus = ["Question", "Answer"];
+  String _name = "";
+  String _age = "";
+  String _workfield = "";
+  String _description = "";
 
   Future<void> _onSubmitBtnPressed(CookieRequest request,
       ScaffoldMessengerState scaffoldMessenger) async {
     // 'username' and 'password' should be the values of the user login form.
     String username = request.cookies["user"]!;
-    final Map<String, dynamic> response = await request.post("$apiUrl/faq/create_faq_json/", {
+    final Map<String, dynamic> response = await request.post("$apiUrl/home/create_kisah_json/", {
       'username': username,
-      'title': _title,
+      'name': _name,
+      'age': _age,
+      'workfield': _workfield,
       'description': _description,
     });
     request.headers["X-CSRFToken"] = request.cookies["csrftoken"] ?? "";
@@ -91,7 +94,7 @@ class _FaqFormPageState extends State<FaqFormPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create'),
+        title: Text('Kisah UMKM', style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
       drawer: DrawerWidget(),
       body: Form(
@@ -102,7 +105,7 @@ class _FaqFormPageState extends State<FaqFormPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                // Input Judul
+                // Input nama
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
@@ -116,13 +119,13 @@ class _FaqFormPageState extends State<FaqFormPage> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      _title = value!;
+                      _name = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      _title = value!;
+                      _name = value!;
                     });
                   },
                   // Validator sebagai validasi form
@@ -135,7 +138,106 @@ class _FaqFormPageState extends State<FaqFormPage> {
                 ),
               ),
 
-              DropdownButton(
+              Padding(
+                // Input usia
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Masukkan teks",
+                    labelText: "Masukkan teks",
+                    // Menambahkan circular border agar lebih rapi
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  // Menambahkan behavior saat nama diketik
+                  onChanged: (String? value) {
+                    setState(() {
+                      _age = value!;
+                    });
+                  },
+                  // Menambahkan behavior saat data disimpan
+                  onSaved: (String? value) {
+                    setState(() {
+                      _age = value!;
+                    });
+                  },
+                  // Validator sebagai validasi form
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Tidak boleh kosong!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
+              Padding(
+                // Input Bidang 
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Masukkan teks",
+                    labelText: "Masukkan teks",
+                    // Menambahkan circular border agar lebih rapi
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  // Menambahkan behavior saat nama diketik
+                  onChanged: (String? value) {
+                    setState(() {
+                      _workfield = value!;
+                    });
+                  },
+                  // Menambahkan behavior saat data disimpan
+                  onSaved: (String? value) {
+                    setState(() {
+                      _workfield = value!;
+                    });
+                  },
+                  // Validator sebagai validasi form
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Tidak boleh kosong!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
+             Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          style: GoogleFonts.poppins(),
+                          minLines: 2,
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
+                          decoration: const InputDecoration(
+                              labelText: "Deskripsi Usaha",
+                              border: OutlineInputBorder(),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _description = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _description = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Deskripsi tidak boleh kosong!';
+                            }
+                            return null;
+                          },
+
+                        ),
+                      ),
+
+              /*DropdownButton(
                 value: _description,
                 icon: const Icon(Icons.keyboard_arrow_down),
                 items: descriptionstatus.map((String items) {
@@ -149,7 +251,7 @@ class _FaqFormPageState extends State<FaqFormPage> {
                     _description = newValue!;
                   });
                 },
-              ),
+              ),*/
               SizedBox(
                 height: 85,
               ),
@@ -170,7 +272,7 @@ class _FaqFormPageState extends State<FaqFormPage> {
                     },
                   ),
                   ElevatedButton(
-                    child: Text('Daftar FAQ'),
+                    child: Text('Kirim Kisah'),
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                             horizontal: 120.0,
@@ -180,7 +282,8 @@ class _FaqFormPageState extends State<FaqFormPage> {
                             BorderRadius.circular(10.0)),
                         primary: Colors.blue),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/faq-output");
+                      // --------------------------------------------------------
+                      Navigator.pushNamed(context, "/kisah-output");
                     },
                   ),
                 ],

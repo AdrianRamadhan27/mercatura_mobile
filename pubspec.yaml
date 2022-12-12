@@ -42,7 +42,6 @@ dependencies:
   pbp_django_auth: ^0.2.2
   provider: ^6.0.4
   http: ^0.13.5
-  hidden_drawer_menu: any
 
 dev_dependencies:
   flutter_test:
