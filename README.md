@@ -46,7 +46,7 @@ Halaman ini merupakan halaman utama yang berisi kisah inspiratif dari beberapa u
 Halaman ini berisi daftar artikel seputar UMKM yang dibuat oleh user Mercatura. Pengguna yang telah login sebagai User dapat menambahkan artikel baru serta melihat riwayat artikel yang telah dibuatnya. Pada riwayat artikel, pengguna dapat mengubah ataupun menghapus artikel yang telah dibuatnya.
 
 ### 5. Kritik dan Saran Module (Katrina Gisella Sembiring)
-Halaman ini berisi kritik dan saran yang User ingin sampaikan terkait dengan Mercatura. User juga dapat menyatakan bahwa ia setuju dengan kritik atau saran yang sudah dibaut sebelumnya dengan menekan tombol "Setuju". Membuat serta setuju dengan kritik dan saran hanya dibatasi untuk User yang sudah _log in_ saja, dan User yang tidak _log in_ hanya dapat melihat kritik dan saran yang sudah dibuat oleh User lain. 
+Halaman ini berisi kritik dan saran yang User ingin sampaikan terkait dengan Mercatura. Membuat kritik dan saran hanya dibatasi untuk User yang sudah log in saja, dan User yang tidak log in hanya dapat melihat kritik dan saran yang sudah dibuat oleh User lain.
 
 ### 6. UMKM Module (Raden Mohamad Adrian Ramadhan Hendar Wibawa)
 Halaman ini berisi daftar nama UMKM dan profil singkatnya. Terdapat searchbox yang memungkinkan pengguna untuk mencari UMKM berdasarkan keyword ataupun filter berdasarkan bidang dan lokasi usaha. Pengguna yang telah login sebagai User dapat menambahkan UMKM baru dan juga dapat menambahkan UMKM favoritnya. 

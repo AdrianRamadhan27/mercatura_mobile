@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
 import '../models/kritiksaran.dart';
 import 'dart:convert';
+import '../../core/environments/endpoints.dart';
 
 Future<List<KritikSaran>> fetchKritikSaran() async {
-  var url = Uri.parse('http://192.168.10.84:8000/kritiksaran/json/');
+  var url = Uri.parse(Endpoint.kritikSaran);
   var response = await http.get(
     url,
     headers: {
@@ -12,7 +13,6 @@ Future<List<KritikSaran>> fetchKritikSaran() async {
     },
   );
   var data = jsonDecode(utf8.decode(response.bodyBytes));
-  print(data);
 
   // ini namanya sama mungkin konflik lol
   List<KritikSaran> listKritikSaran = [];

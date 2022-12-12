@@ -1,13 +1,13 @@
 // import 'dart: developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import '../widget/all_kritiksaran.dart';
 import '../models/kritiksaran.dart';
 import '../utils/fetch_kritiksaran.dart';
-import '../../core/environments/endpoints.dart';
-// import 'dart:developer';
+
 
 class ShowKritikSaranPage extends StatefulWidget {
   const ShowKritikSaranPage({Key? key}) : super(key: key);
@@ -24,9 +24,15 @@ class _ShowKritikSaranPageState extends State<ShowKritikSaranPage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
+      drawer: const DrawerWidget(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: Text(
+          'Kritik & Saran',
+          style: GoogleFonts.poppins(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       extendBodyBehindAppBar: true,
       // drawer: buildDrawer(context),
@@ -41,11 +47,11 @@ class _ShowKritikSaranPageState extends State<ShowKritikSaranPage> {
                   children: [
                     Text(
                       "Tidak ada kritik/saran",
-                      // style: GoogleFonts.poppins(
-                      //     textStyle: const TextStyle(
-                      //     color: Color(0xff59A5D8),
-                      //     fontSize: 20)
-                      // ),
+                      style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                          color: Color(0xff59A5D8),
+                          fontSize: 20)
+                      ),
                     ),
                     const SizedBox(height: 8),
                   ],
@@ -57,7 +63,7 @@ class _ShowKritikSaranPageState extends State<ShowKritikSaranPage> {
                         // horizontal: 20.0, vertical: 15.0),
                         padding: EdgeInsets.zero,
                         children: [
-                      allKritikSaran(listKritikSaran: snapshot.data!),
+                      AllKritikSaran(listKritikSaran: snapshot.data!),
                     ]));
               }
             }

@@ -1,11 +1,10 @@
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import '../../core/environments/endpoints.dart';
-import '../models/kritiksaran.dart';
 import '../pages/show_kritiksaran.dart';
 
 class CreateKritikSaran extends StatefulWidget {
@@ -18,24 +17,24 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? title = "";
   String? description = "";
-  TextEditingController _controllerTitle = TextEditingController();
-  TextEditingController _controllerDescription = TextEditingController();
+  final TextEditingController _controllerTitle = TextEditingController();
+  final TextEditingController _controllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
+      drawer: const DrawerWidget(),
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Tulis Kritik/Saran',
-          // style: GoogleFonts.poppins(
-          //     color: Colors.black,
-          //     fontSize: 24.0,
-          //     fontWeight: FontWeight.bold,
-          // ),
+          style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+          ),
         ),
-        centerTitle: true,
       ),
       body: SafeArea(
         child: Form(
@@ -46,6 +45,10 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
               children: [
                 const SizedBox(height: 10),
                 TextFormField(
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   controller: _controllerTitle,
                   decoration: const InputDecoration(
                     labelText: "Judul",
@@ -73,6 +76,10 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   controller: _controllerDescription,
                   decoration: const InputDecoration(
                     labelText: "Deskripsi",
@@ -136,13 +143,13 @@ class _CreateKritikSaranState extends State<CreateKritikSaran> {
                     },
                     child: Text(
                       "Tambah Kritik/Saran",
-                      // style: GoogleFonts.poppins(
-                      //   textStyle: const TextStyle(
-                      //     color: Colors.white,
-                      //     fontSize: 16,
-                      //     fontWeight: FontWeight.bold
-                      //   )
-                      // ),
+                      style: GoogleFonts.poppins(
+                        textStyle: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
                     ))
               ],
             ),

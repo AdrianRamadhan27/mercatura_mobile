@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'show_kritiksaran_anon.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../custom_widgets/drawer_widget.dart';
 import '../models/kritiksaran_anon.dart';
-import 'create_kritiksaran_anon.dart';
 class ShowKritikSaranAnon extends StatefulWidget{
     const ShowKritikSaranAnon({super.key});
 
+    @override
     State<ShowKritikSaranAnon> createState() => _ShowKritikSaranAnonState();
 }
 
 class _ShowKritikSaranAnonState extends State<ShowKritikSaranAnon> {
-    Widget build(BuildContext context) {
+    @override
+  Widget build(BuildContext context) {
         return Scaffold(
+            drawer: const DrawerWidget(),
             appBar: AppBar(
-                title: const Text('Kritik Saran Mobile'),
+                title: Text(
+                    'Kritik & Saran',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                    ),
+                ),
             ),
-
-            // drawer: appDrawer(context),
 
             body: ListView.builder(
                 itemBuilder: (context, index) {
@@ -34,8 +41,11 @@ class _ShowKritikSaranAnonState extends State<ShowKritikSaranAnon> {
                                     Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(
-                                            KritikSaranAnon.KritikSaranAnonList[index].judul,
-                                            style: const TextStyle(fontSize: 15),
+                                            KritikSaranAnon.kritikSaranAnonList[index].judul,
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.bold,
+                                            ),
                                         ),
                                     ),
 
@@ -43,8 +53,11 @@ class _ShowKritikSaranAnonState extends State<ShowKritikSaranAnon> {
                                         padding: const EdgeInsets.all(10.0),
                                         child:
                                             Text(
-                                                KritikSaranAnon.KritikSaranAnonList[index].deskripsi,
-                                                style: const TextStyle(fontSize: 15),
+                                                KritikSaranAnon.kritikSaranAnonList[index].deskripsi,
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 24.0,
+                                                    fontWeight: FontWeight.bold,
+                                                ),
                                             ),
 
 
@@ -56,7 +69,7 @@ class _ShowKritikSaranAnonState extends State<ShowKritikSaranAnon> {
                     );
                 },
 
-                itemCount: KritikSaranAnon.KritikSaranAnonList.length,
+                itemCount: KritikSaranAnon.kritikSaranAnonList.length,
 
             ),
         );

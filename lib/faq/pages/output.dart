@@ -70,35 +70,37 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                     ],
                   );
                 } else {
-                  return ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (_, index) => Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: const [
-                          ]),
-                      child: Card(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            ListTile(
-                              title: Padding(
-                                padding: const EdgeInsets.all(7.0),
-                                child: Text(snapshot.data[index].fields.user,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 20.0)),
+                  return SingleChildScrollView(
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: const [
+                            ]),
+                        child: Card(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(7.0),
+                                  child: Text(snapshot.data[index].fields.user,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20.0)),
+                                ),
+                                subtitle: Text(
+                                  'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
+                                ),
                               ),
-                              subtitle: Text(
-                                'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

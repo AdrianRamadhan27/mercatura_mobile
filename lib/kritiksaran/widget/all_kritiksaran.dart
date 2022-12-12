@@ -1,47 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mercatura/kritiksaran/utils/fetch_kritiksaran.dart';
-// import 'package:intl/intl.dart';
 import '../models/kritiksaran.dart';
-// import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class allKritikSaran extends StatelessWidget {
-  const allKritikSaran({Key? key, required this.listKritikSaran})
+class AllKritikSaran extends StatelessWidget {
+  const AllKritikSaran({Key? key, required this.listKritikSaran})
       : super(key: key);
 
   final List<KritikSaran> listKritikSaran;
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: const Text('Semua Kritik dan Saran'),
-    //     ),
-    //     body: FutureBuilder(
-    //       future: fetchKritikSaran(),
-    //       builder: (context, AsyncSnapshot snapshot) {
-    //         if (snapshot.data == null) {
-    //           return const Center(child: CircularProgressIndicator());
-    //         } else {
-    //           if (!snapshot.hasData) {
-    //             return Column(
-    //               children: const [
-    //                 Text(
-    //                   "Belum ada kritik/saran",
-    //                 ),
-    //                 SizedBox(height: 8),
-    //               ],
-    //             );
-    //           } else {
-    //             return ListView.builder(
-    //                 itemCount: snapshot.data!.length,
-    //                 itemBuilder: (_, index) => ListTile(
-    //                   title: ""
-
-    //                 ));
-    //           }
-    //         }
-    //       },
-    //     ));
     return Padding(
         padding: const EdgeInsets.only(top: 100.0),
         child: Column(
@@ -52,10 +20,10 @@ class allKritikSaran extends StatelessWidget {
                 Text(
                   "Semua Kritik dan Saran",
 
-                  // style: (
-                  //     fontWeight: FontWeight.bold,
-                  //     fontSize: 20.0,
-                  // ),
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                  ),
                 ),
               ],
             ),
@@ -75,41 +43,36 @@ class allKritikSaran extends StatelessWidget {
                             children: [
                               const SizedBox(height: 10),
                               Text(
-                                "Judul: " + listKritikSaran[index].title,
+                                "Judul: ${listKritikSaran[index].title}" ,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.white),
-                                // style: GoogleFonts.poppins(
-                                //     color: Colors.black,
-                                //     fontWeight: FontWeight.w600,
-                                //     fontSize: 14.0,
-                                //     height: 1.5
-                                // ),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                    height: 1.5
+                                ),
                               ),
                               const SizedBox(height: 20),
                               Text(
-                                "Deskripsi: " +
-                                    listKritikSaran[index].description,
-                                style: TextStyle(color: Colors.white),
-
+                                "Deskripsi: ${listKritikSaran[index].description}",
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                    height: 1.5
+                                ),
                                 overflow: TextOverflow.ellipsis,
-                                // style: GoogleFonts.poppins(
-                                //     color: Colors.black,
-                                //     fontWeight: FontWeight.w600,
-                                //     fontSize: 14.0,
-                                //     height: 1.5
-                                // ),
                               ),
                               const SizedBox(height: 20),
                               Text(
-                                "User: " + listKritikSaran[index].username,
-                                style: TextStyle(color: Colors.white),
+                                "User: ${listKritikSaran[index].username}",
                                 overflow: TextOverflow.ellipsis,
-                                // style: GoogleFonts.poppins(
-                                //     color: Colors.black,
-                                //     fontWeight: FontWeight.w600,
-                                //     fontSize: 14.0,
-                                //     height: 1.5
-                                // ),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                    height: 1.5
+                                ),
                               ),
                             ],
                           )),

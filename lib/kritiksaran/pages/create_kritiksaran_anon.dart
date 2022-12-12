@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
-import 'show_kritiksaran_anon.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../custom_widgets/drawer_widget.dart';
 import '../models/kritiksaran_anon.dart';
 
 class KritikSaranForm extends StatefulWidget {
+  const KritikSaranForm({super.key});
+
     @override
-    _KritikSaranFormState createState() => new _KritikSaranFormState();
+    State<KritikSaranForm> createState() =>  _KritikSaranFormState();
 }
 
 class _KritikSaranFormState extends State<KritikSaranForm> {
     final _formKey = GlobalKey<FormState>();
     String _judul = "";
     String _deskripsi = "";
-    TextEditingController _controllerJudul = TextEditingController();
-    TextEditingController _controllerDeskripsi = TextEditingController();
+    final TextEditingController _controllerJudul = TextEditingController();
+    final TextEditingController _controllerDeskripsi = TextEditingController();
     @override
     Widget build(BuildContext context) {
         return Scaffold(
+            drawer: const DrawerWidget(),
             appBar: AppBar(
-                title: const Text('Form'),
+                title: Text(
+                    'Tulis Kritik/Saran',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                    ),
+                ),
             ),
-
-            // drawer: appDrawer(context),
 
             body: Form(
             key: _formKey,
@@ -32,12 +41,17 @@ class _KritikSaranFormState extends State<KritikSaranForm> {
                         Padding (
                          padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                            style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                            ),
                             controller: _controllerJudul,
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 hintText: "Judul Kritik atau Saran",
                                 labelText: "Judul",
-                                border: new OutlineInputBorder(
-                                    borderRadius: new BorderRadius.circular(20.0),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
                                 ),
                             ), // InputDecoration
 
@@ -67,13 +81,18 @@ class _KritikSaranFormState extends State<KritikSaranForm> {
                         Padding(
                         padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                            style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                            ),
                             controller: _controllerDeskripsi,
                             maxLines: 5,
-                            decoration: new InputDecoration(
+                            decoration: InputDecoration(
                                 hintText: "Deskripsi Kritik atau Saran",
                                 labelText: "Deskripsi",
-                                border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(20.0),
+                                border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
                                 ),
                             ), // InputDecoration
 
@@ -114,9 +133,13 @@ class _KritikSaranFormState extends State<KritikSaranForm> {
                                 }
 
                             },
-                            child: const Text (
+                            child: Text (
                                 "Simpan",
-                                style: TextStyle(color: Colors.white),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
+                                ),
                             ),
                         ),
 
