@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/config/api_config.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/custom_widgets/mydrawer.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -63,9 +65,18 @@ class _RegisterPageState extends State<RegisterPage> {
     // The rest of your widgets are down below
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register"),
+        title: Text(
+          "Mercatura",
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            )
+          ),
+        ),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
         children: [
           Padding(
@@ -75,11 +86,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 key: _formKey,
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Register"),
+                      const SizedBox(height: 30,),
+                      Text(
+                        "R E G I S T E R",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Color.fromRGBO(94, 35, 157, 1),
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
+                          )
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           decoration: const InputDecoration(
                             labelText: "Username",
                             border: OutlineInputBorder(),
@@ -169,7 +192,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               _onSubmitBtnPressed(request, scaffoldMessenger);
                             }
                           },
-                          child: const Text("Submit")),
+                          child: Text(
+                            "Submit",
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                          )),
                       const SizedBox(
                         height: 30,
                       ),
@@ -185,13 +217,30 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Sudah Punya Akun?'),
+              Text(
+                'Sudah Punya Akun?',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                  )
+                ),
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed("/login");
                 },
-                child: Text("Login"),
+                child: Text(
+                  "Login",
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Color.fromRGBO(94, 35, 157, 1),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                ),
               )
             ],
           )
