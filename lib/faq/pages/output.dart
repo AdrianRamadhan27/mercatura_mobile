@@ -37,7 +37,8 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar FAQ', style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+        title: Text('Daftar FAQ',
+        style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
       drawer: const DrawerWidget(),
       body: Stack(
@@ -71,38 +72,40 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                     ],
                   );
                 } else {
-                  return SingleChildScrollView(
-                    child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        padding: const EdgeInsets.all(20.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: const [
-                            ]),
-                        child: Card(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              ListTile(
-                                title: Padding(
-                                  padding: const EdgeInsets.all(7.0),
-                                  child: Text(snapshot.data[index].fields.user,
-                                      style:  GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20.0)),
-                                ),
-                                subtitle: Text(
-                                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                                  'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
+                  return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      padding: const EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: const [
+                          ]),
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(snapshot.data[index].fields.user,
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30.0)),
+                              ),
+                              subtitle: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text('Teks: ${snapshot.data[index].fields.title}\n''Tipe: ${snapshot.data[index].fields.description}',
+                                  style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w100,
+                                      fontSize: 25.0),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

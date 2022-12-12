@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:mercatura/pages/login_page.dart';
 import 'package:mercatura/pages/register_page.dart';
 import 'package:mercatura/pages/home_page.dart';
+import 'package:mercatura/pages/form_kisah.dart';
 import 'package:mercatura/kritiksaran/pages/create_kritiksaran.dart';
 import 'package:mercatura/kritiksaran/pages/show_kritiksaran_anon.dart';
 import 'package:mercatura/kritiksaran/pages/show_kritiksaran.dart';
@@ -92,6 +93,8 @@ class MyApp extends StatelessWidget {
         home: const HomePage(),
         routes: {
           "/home": (BuildContext context) => const HomePage(),
+          "/form_kisah": (BuildContext context) => const KisahFormPage(),
+
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
           "/buatKritikSaran": (BuildContext context) => const CreateKritikSaran(),

@@ -6,4 +6,6 @@ class Endpoint {
   static const String kritikSaran = '$baseUrl/kritiksaran/json/';
   static const String createKritikSaranJson =
       '$baseUrl/kritiksaran/create_post_json/';
+
 }
+
