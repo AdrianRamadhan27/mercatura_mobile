@@ -76,13 +76,13 @@ class Fields {
   };
 }
 
-final List<String> daftar_bidang = [
+final List<String> daftarBidang = [
   "Agribisnis",
   "Kuliner",
   "Fashion"
 ];
 
-final List<String> daftar_provinsi = [
+final List<String> daftarProvinsi = [
   'Aceh',
   'Sumatera Utara',
   'Sumatera',

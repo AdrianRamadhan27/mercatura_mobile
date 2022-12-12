@@ -4,21 +4,20 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:mercatura/umkm/pages/umkm_list_page.dart';
+
 import 'package:mercatura/umkm/models/umkm.dart';
 
 
 
 class UmkmCards extends StatelessWidget {
-  UmkmCards({super.key, required this.umkmList, required this.refreshFunction});
+  const UmkmCards({super.key, required this.umkmList, required this.refreshFunction});
 
-  List<Umkm> umkmList;
-  Function refreshFunction;
+  final List<Umkm> umkmList;
+  final Function refreshFunction;
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     // TODO: implement build
     return ListView.builder(
@@ -32,8 +31,8 @@ class UmkmCards extends StatelessWidget {
               ListTile(
                 leading:  Container(
                       width: 100,
-                      padding: EdgeInsets.all(1.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(1.0),
+                      decoration: const BoxDecoration(
                         color: Colors.black,
                         shape: BoxShape.circle,
                       ),
@@ -45,7 +44,7 @@ class UmkmCards extends StatelessWidget {
                           },
                           child:CircleAvatar(
                         radius: 40.0,
-                        backgroundImage: NetworkImage("${umkmList[index].fields.logoUsaha}"),
+                        backgroundImage: NetworkImage(umkmList[index].fields.logoUsaha),
                           ),
                         ),
                       ),
@@ -64,11 +63,11 @@ class UmkmCards extends StatelessWidget {
                                 Colors.green : (umkmList[index].fields.bidangUsaha == "Kuliner") ?
                                 Colors.orange :
                                 Colors.red,
-                                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                                borderRadius: const BorderRadius.all(Radius.circular(8.0))),
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
                               child:  Center(
-                                child:  Text("#" + umkmList[index].fields.bidangUsaha,
+                                child:  Text("#${umkmList[index].fields.bidangUsaha}",
                                   style: GoogleFonts.poppins(
                                     color: Colors.white,
                                     fontSize: 12
@@ -80,13 +79,13 @@ class UmkmCards extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 7,
                     ),
                     Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Icon(Icons.location_pin, color: Colors.cyan,),
+                          const Icon(Icons.location_pin, color: Colors.cyan,),
                           Text(umkmList[index].fields.lokasiUsaha,
                             style: GoogleFonts.poppins())
                         ]

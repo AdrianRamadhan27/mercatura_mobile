@@ -4,7 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:mercatura/config/api_config.dart';
+
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/umkm/models/umkm.dart';
 import 'package:mercatura/umkm/api/umkm_api.dart';
@@ -13,7 +13,7 @@ import 'package:mercatura/umkm/api/umkm_api.dart';
 
 
 class UmkmDetailPage extends StatefulWidget {
-  UmkmDetailPage({super.key, required this.id});
+  const UmkmDetailPage({super.key, required this.id});
   final int id;
 
   @override
@@ -82,15 +82,15 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                   Wrap(
                                     crossAxisAlignment: WrapCrossAlignment.center,
                                     children: [
-                                      Icon(Icons.location_pin),
+                                      const Icon(Icons.location_pin),
                                       Text(snapshot.data.fields.lokasiUsaha, style: GoogleFonts.poppins())
                                     ]
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Wrap(
                                       crossAxisAlignment: WrapCrossAlignment.center,
                                       children: [
-                                        Icon(Icons.email),
+                                        const Icon(Icons.email),
                                         Text(snapshot.data.fields.emailUsaha, style: GoogleFonts.poppins())
                                       ]
                                   ),
@@ -98,7 +98,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                               ),
                               const SizedBox(height: 16),
                               Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Colors.pink,
                                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                                   child:  Center(
@@ -128,7 +128,7 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
                                   FloatingActionButton.extended(
                                     onPressed: () {
                                       Clipboard.setData(ClipboardData(text: snapshot.data.fields.websiteUsaha));
-                                      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Url Website Copied")));
+                                      scaffoldMessenger.showSnackBar(const SnackBar(content: Text("Url Website Copied")));
                                     },
                                     heroTag: 'url',
                                     elevation: 0,
@@ -167,8 +167,8 @@ class _UmkmDetailPageState extends State<UmkmDetailPage> {
 
 
 class _TopPortion extends StatelessWidget {
-  _TopPortion({super.key, required this.umkmDetail});
-  Umkm umkmDetail;
+  const _TopPortion({required this.umkmDetail});
+  final Umkm umkmDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -214,11 +214,11 @@ class _TopPortion extends StatelessWidget {
                           Colors.green : (umkmDetail.fields.bidangUsaha == "Kuliner") ?
                           Colors.orange :
                           Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                          borderRadius: const BorderRadius.all(Radius.circular(8.0))),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
                         child:  Center(
-                          child: Text("#" + umkmDetail.fields.bidangUsaha,
+                          child: Text("#${umkmDetail.fields.bidangUsaha}",
                             style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
                             textAlign: TextAlign.center,),
                         ),

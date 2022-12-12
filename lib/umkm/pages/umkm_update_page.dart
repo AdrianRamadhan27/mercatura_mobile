@@ -28,15 +28,15 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
   @override
   void initState() {
     super.initState();
-    _nama_usaha = widget.umkmDetail.fields.namaUsaha;
-    _bidang_usaha = widget.umkmDetail.fields.bidangUsaha;
-    _lokasi_usaha = widget.umkmDetail.fields.lokasiUsaha;
-    _email_usaha = widget.umkmDetail.fields.emailUsaha;
-    _website_usaha = (widget.umkmDetail.fields.websiteUsaha == "https://www.google.com/search?q=" + widget.umkmDetail.fields.namaUsaha) ?
+    _namaUsaha = widget.umkmDetail.fields.namaUsaha;
+    _bidangUsaha = widget.umkmDetail.fields.bidangUsaha;
+    _lokasiUsaha = widget.umkmDetail.fields.lokasiUsaha;
+    _emailusaha = widget.umkmDetail.fields.emailUsaha;
+    _websiteUsaha = (widget.umkmDetail.fields.websiteUsaha == "https://www.google.com/search?q=${widget.umkmDetail.fields.namaUsaha}") ?
     "":
     widget.umkmDetail.fields.websiteUsaha;
-    _logo_usaha = widget.umkmDetail.fields.logoUsaha;
-    _deskripsi_usaha = widget.umkmDetail.fields.deskripsiUsaha;
+    _logoUsaha = widget.umkmDetail.fields.logoUsaha;
+    _deskripsiUsaha = widget.umkmDetail.fields.deskripsiUsaha;
 
 
   }
@@ -48,19 +48,19 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
     });
     // 'username' and 'password' should be the values of the user login form.
     final Map<String, dynamic> response = await request.post("$apiUrl/umkm/update_umkm_json/${widget.umkmDetail.pk}", {
-      'nama_usaha': _nama_usaha,
-      'lokasi_usaha': _lokasi_usaha,
-      'deskripsi_usaha': _deskripsi_usaha,
-      'bidang_usaha': _bidang_usaha,
-      'website_usaha': _website_usaha,
-      'logo_usaha': _logo_usaha,
-      'email_usaha': _email_usaha,
+      'nama_usaha': _namaUsaha,
+      'lokasi_usaha': _lokasiUsaha,
+      'deskripsi_usaha': _deskripsiUsaha,
+      'bidang_usaha': _bidangUsaha,
+      'website_usaha': _websiteUsaha,
+      'logo_usaha': _logoUsaha,
+      'email_usaha': _emailusaha,
     });
     request.headers["X-CSRFToken"] = request.cookies["csrftoken"] ?? "";
     request.headers["Referer"] = apiUrl;
     if (!mounted) return;
     if (response["status"]) {
-      final snackBar = SnackBar(content: Text("Berhasil mengedit " + response["nama_usaha"]));
+      final snackBar = SnackBar(content: Text("Berhasil mengedit $_namaUsaha"));
       scaffoldMessenger.showSnackBar(snackBar);
       Navigator.of(context).pop();
     } else {
@@ -72,13 +72,13 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
     });
   }
 
-  String _nama_usaha = "";
-  String _lokasi_usaha = "Aceh";
-  String _bidang_usaha = "Agribisnis";
-  String _email_usaha= "";
-  String _deskripsi_usaha = "";
-  String _website_usaha = "";
-  String _logo_usaha = "";
+  String _namaUsaha = "";
+  String _lokasiUsaha = "Aceh";
+  String _bidangUsaha = "Agribisnis";
+  String _emailusaha= "";
+  String _deskripsiUsaha = "";
+  String _websiteUsaha = "";
+  String _logoUsaha = "";
 
 
 
@@ -103,7 +103,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                   child: Column(
                     children: [
                       Text(
-                          "Edit UMKM " + _nama_usaha,
+                          "Edit UMKM $_namaUsaha",
                           style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -113,19 +113,19 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           style: GoogleFonts.poppins(),
-                          initialValue: _nama_usaha,
+                          initialValue: _namaUsaha,
                           decoration: const InputDecoration(
                             labelText: "Nama Usaha",
                             border: OutlineInputBorder(),
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _nama_usaha = value!;
+                              _namaUsaha = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _nama_usaha = value!;
+                              _namaUsaha = value!;
                             });
                           },
                           validator: (String? value) {
@@ -143,9 +143,9 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           style: GoogleFonts.poppins(),
                         ),
                         trailing: DropdownButton(
-                          value: _bidang_usaha,
+                          value: _bidangUsaha,
                           icon: const Icon(Icons.keyboard_arrow_down),
-                          items: daftar_bidang.map((String items) {
+                          items: daftarBidang.map((String items) {
                             return DropdownMenuItem(
                               value: items,
                               child: Text(items, style: GoogleFonts.poppins()),
@@ -154,7 +154,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           onChanged: (String? newValue) {
                             setState(() {
 
-                              _bidang_usaha = newValue!;
+                              _bidangUsaha = newValue!;
 
                             });
                           },
@@ -167,9 +167,9 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           style: GoogleFonts.poppins(),
                         ),
                         trailing: DropdownButton(
-                          value: _lokasi_usaha,
+                          value: _lokasiUsaha,
                           icon: const Icon(Icons.keyboard_arrow_down),
-                          items: daftar_provinsi.map((String items) {
+                          items: daftarProvinsi.map((String items) {
                             return DropdownMenuItem(
                               value: items,
                               child: Text(items, style: GoogleFonts.poppins()),
@@ -177,7 +177,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           }).toList(),
                           onChanged: (String? newValue) {
                             setState(() {
-                              _lokasi_usaha = newValue!;
+                              _lokasiUsaha = newValue!;
                             });
                           },
                         ),
@@ -186,7 +186,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           style: GoogleFonts.poppins(),
-                          initialValue: _email_usaha,
+                          initialValue: _emailusaha,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             labelText: "Email Usaha",
@@ -194,12 +194,12 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _email_usaha = value!;
+                              _emailusaha = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _email_usaha = value!;
+                              _emailusaha = value!;
                             });
                           },
                           validator: (String? value) {
@@ -215,7 +215,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           style: GoogleFonts.poppins(),
-                          initialValue: _website_usaha,
+                          initialValue: _websiteUsaha,
                           keyboardType: TextInputType.url,
                           decoration: const InputDecoration(
                             labelText: "Website Usaha",
@@ -223,12 +223,12 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _website_usaha = value!;
+                              _websiteUsaha = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _website_usaha = value!;
+                              _websiteUsaha = value!;
                             });
                           },
 
@@ -239,7 +239,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           style: GoogleFonts.poppins(),
-                          initialValue: _logo_usaha,
+                          initialValue: _logoUsaha,
                           keyboardType: TextInputType.url,
                           decoration: const InputDecoration(
                               labelText: "Logo Usaha",
@@ -248,12 +248,12 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _logo_usaha = value!;
+                              _logoUsaha = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _logo_usaha = value!;
+                              _logoUsaha = value!;
                             });
                           },
                           validator: (String? value) {
@@ -271,19 +271,19 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                           style: GoogleFonts.poppins(),
                           minLines: 2,
                           maxLines: 3,
-                          initialValue: _deskripsi_usaha,
+                          initialValue: _deskripsiUsaha,
                           decoration: const InputDecoration(
                             labelText: "Deskripsi Usaha",
                             border: OutlineInputBorder(),
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _deskripsi_usaha = value!;
+                              _deskripsiUsaha = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _deskripsi_usaha = value!;
+                              _deskripsiUsaha = value!;
                             });
                           },
                           validator: (String? value) {
@@ -306,7 +306,7 @@ class _UmkmUpdatePageState extends State<UmkmUpdatePage> {
                                 Navigator.pop(context);
                               },
                               child: Text("Kembali", style: GoogleFonts.poppins())),
-                          SizedBox(
+                          const SizedBox(
                             width: 20.0,
                           ),
                           ElevatedButton(

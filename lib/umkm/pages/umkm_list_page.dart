@@ -11,8 +11,8 @@ import 'package:mercatura/umkm/widgets/umkm_cards.dart';
 
 
 
-List<String> daftar_filter_bidang = ["Semua", ...daftar_bidang];
-List<String> daftar_filter_provinsi = ["Semua", ...daftar_provinsi];
+List<String> daftarFilterBidang = ["Semua", ...daftarBidang];
+List<String> daftarFilterProvinsi = ["Semua", ...daftarProvinsi];
 
 class UmkmListPage extends StatefulWidget {
   const UmkmListPage({super.key});
@@ -35,7 +35,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
   void initState() {
     super.initState();
     final request = Provider.of<CookieRequest>(context, listen: false);
-    futureUmkmLIst = fetchUmkmList(request, _search_query, _bidang_usaha, _lokasi_usaha);
+    futureUmkmLIst = fetchUmkmList(request, _searchQuery, _bidangUsaha, _lokasiUsaha);
 
   }
 
@@ -43,7 +43,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
     final request = Provider.of<CookieRequest>(context, listen: false);
     setState(() {
 
-      futureUmkmLIst = fetchUmkmList(request, _search_query, _bidang_usaha, _lokasi_usaha);
+      futureUmkmLIst = fetchUmkmList(request, _searchQuery, _bidangUsaha, _lokasiUsaha);
     });
   }
 
@@ -60,10 +60,10 @@ class _UmkmListPageState extends State<UmkmListPage> {
     });
   }
 
-  String _search_query = "";
-  String _bidang_usaha = "Semua";
-  String _lokasi_usaha = "Semua";
-  List<Color> daftar_warna = [];
+  String _searchQuery = "";
+  String _bidangUsaha = "Semua";
+  String _lokasiUsaha = "Semua";
+
 
 
   @override
@@ -124,12 +124,12 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         ),
                         onChanged: (String? value) {
                           setState(() {
-                            _search_query = value!;
+                            _searchQuery = value!;
                           });
                         },
                         onSaved: (String? value) {
                           setState(() {
-                            _search_query = value!;
+                            _searchQuery = value!;
                           });
                         },
                       ),
@@ -141,9 +141,9 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         style: GoogleFonts.poppins(),
                       ),
                       trailing: DropdownButton(
-                        value: _bidang_usaha,
+                        value: _bidangUsaha,
                         icon: const Icon(Icons.keyboard_arrow_down),
-                        items: daftar_filter_bidang.map((String items) {
+                        items: daftarFilterBidang.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(items,
@@ -153,7 +153,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         onChanged: (String? newValue) {
                           setState(() {
 
-                            _bidang_usaha = newValue!;
+                            _bidangUsaha = newValue!;
 
                           });
                         },
@@ -166,9 +166,9 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         style: GoogleFonts.poppins()
                       ),
                       trailing: DropdownButton(
-                        value: _lokasi_usaha,
+                        value: _lokasiUsaha,
                         icon: const Icon(Icons.keyboard_arrow_down),
-                        items: daftar_filter_provinsi.map((String items) {
+                        items: daftarFilterProvinsi.map((String items) {
                           return DropdownMenuItem(
                             value: items,
                             child: Text(items,
@@ -177,7 +177,7 @@ class _UmkmListPageState extends State<UmkmListPage> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _lokasi_usaha = newValue!;
+                            _lokasiUsaha = newValue!;
                           });
                         },
                       ),
@@ -205,43 +205,38 @@ class _UmkmListPageState extends State<UmkmListPage> {
               ),
             ),
           ),
-          Container(
-              child: FutureBuilder(
-                  future: futureUmkmLIst,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
-                    }
-                    if (snapshot.data == null) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else {
+          FutureBuilder(
+              future: futureUmkmLIst,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                if (snapshot.data == null) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
 
-                      if (snapshot.data.length == 0) {
-                        return Column(
-                          children:  [
-                            Text(
-                              "UMKM Tidak Ditemukan",
-                              style: GoogleFonts.poppins()
-                            ),
-                            SizedBox(height: 8),
-                          ],
-                        );
-                      } else {
+                  if (snapshot.data.length == 0) {
+                    return Column(
+                      children:  [
+                        Text(
+                          "UMKM Tidak Ditemukan",
+                          style: GoogleFonts.poppins()
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                    );
+                  } else {
 
-                        daftar_warna = [];
-                        for (Umkm data in snapshot.data) {
-                          daftar_warna.add(Colors.blue);
-                        }
 
-                        return Expanded(
-                          child: SingleChildScrollView(
-                            child: UmkmCards(umkmList: snapshot.data, refreshFunction: refresh),
-                          ),
-                        );
-                      }
-                    }
+
+                    return Expanded(
+                      child: SingleChildScrollView(
+                        child: UmkmCards(umkmList: snapshot.data, refreshFunction: refresh),
+                      ),
+                    );
                   }
-              )
+                }
+              }
           )
         ],
       ),
