@@ -1,7 +1,7 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/custom_widgets/drawer_widget.dart';
 import 'package:mercatura/faq/models/faq.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mercatura/faq/utils/fetch.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daftar FAQ'),
+        title: Text('Daftar FAQ', style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
       ),
       drawer: const DrawerWidget(),
       body: Stack(
@@ -62,12 +62,12 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
               } else {
                 if (!snapshot.hasData) {
                   return Column(
-                    children: const [
+                    children: [
                       Text(
                         "Tidak ada watch list :(",
-                        style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                        style: GoogleFonts.poppins(color: const Color(0xff59A5D8), fontSize: 20),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                     ],
                   );
                 } else {
@@ -92,11 +92,12 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                                 title: Padding(
                                   padding: const EdgeInsets.all(7.0),
                                   child: Text(snapshot.data[index].fields.user,
-                                      style: const TextStyle(
+                                      style:  GoogleFonts.poppins(
                                           fontWeight: FontWeight.w900,
                                           fontSize: 20.0)),
                                 ),
                                 subtitle: Text(
+                                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                                   'Judul: ${snapshot.data[index].fields.title}\nTipe: ${snapshot.data[index].fields.description}'
                                 ),
                               ),
