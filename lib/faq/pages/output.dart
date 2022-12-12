@@ -71,6 +71,42 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                     ],
                   );
                 } else {
+
+                  return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      padding: const EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: const [
+                          ]),
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(snapshot.data[index].fields.user,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 30.0)),
+                              ),
+                              subtitle: Padding(
+                                  padding: const EdgeInsets.all(7.0),
+                                  child: Text('Teks: ${snapshot.data[index].fields.title}\n''Tipe: ${snapshot.data[index].fields.description}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 25.0),
+                                  ),
+                              ),
+                            ),
+                          ],
+
                   return SingleChildScrollView(
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -103,6 +139,7 @@ class _FaqOutputPageState extends State<FaqOutputPage> {
                               ),
                             ],
                           ),
+
                         ),
                       ),
                     ),
