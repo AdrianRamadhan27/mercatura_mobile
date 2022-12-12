@@ -87,7 +87,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 // Route menu ke halaman utama
-                Navigator.of(context).pushReplacementNamed("/home");
+                Navigator.of(context).pushReplacementNamed("/lihatKritikSaran");
               },
             ),
             ListTile(
