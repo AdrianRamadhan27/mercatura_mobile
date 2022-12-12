@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:mercatura/artikel/pages/article_list.dart';
 import 'package:mercatura/artikel/pages/create_article.dart';
@@ -121,4 +122,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 

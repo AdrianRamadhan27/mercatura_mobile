@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mercatura/config/api_config.dart';
-import 'package:mercatura/custom_widgets/mydrawer.dart';
+import 'package:mercatura/custom_widgets/drawer_widget.dart';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     if (request.loggedIn) {
       String username = response["user"];
       request.cookies["user"] = username;
-      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai "+username)));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text("Berhasil login sebagai $username")));
       Navigator.of(context).pushReplacementNamed("/home");
     } else {
       final snackBar = SnackBar(content: Text(response["message"]));
@@ -61,11 +62,32 @@ class _LoginPageState extends State<LoginPage> {
     // The rest of your widgets are down below
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: Text(
+          "Mercatura",
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            )
+          ),
+        ),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 30,),
+          Text(
+            "L O G I N",
+            style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                color: Color.fromRGBO(94, 35, 157, 1),
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              )
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
@@ -74,10 +96,10 @@ class _LoginPageState extends State<LoginPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const Text("Login"),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: GoogleFonts.poppins(),
                           decoration: const InputDecoration(
                             labelText: "Username",
                             border: OutlineInputBorder(),
@@ -136,7 +158,16 @@ class _LoginPageState extends State<LoginPage> {
                               _onSubmitBtnPressed(request, scaffoldMessenger);
                             }
                           },
-                          child: const Text("Login")),
+                          child: Text(
+                            "Login",
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                          )),
                       const SizedBox(
                         height: 30,
                       ),
@@ -154,12 +185,29 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Belum Punya Akun?'),
+              Text(
+                'Belum Punya Akun?',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                  )
+                ),
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed("/register");
                 },
-                child: Text("Register"),
+                child: Text(
+                  "Register", 
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Color.fromRGBO(94, 35, 157, 1),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                ),
+
               )
             ],
           )
