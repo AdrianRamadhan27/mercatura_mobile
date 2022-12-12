@@ -219,6 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Text(
                 'Sudah Punya Akun?',
                 style: GoogleFonts.poppins(
@@ -227,6 +228,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   )
                 ),
               ),
+
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed("/login");

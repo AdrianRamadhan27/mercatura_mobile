@@ -155,9 +155,9 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: isLoading
                               ? null
                               : () {
-                                if (_formKey.currentState!.validate()) {
-                                  _onSubmitBtnPressed(request, scaffoldMessenger);
-                                }
+                            if (_formKey.currentState!.validate()) {
+                              _onSubmitBtnPressed(request, scaffoldMessenger);
+                            }
                           },
                           child: Text(
                             "Login",
@@ -208,6 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ),
                 ),
+
               )
             ],
           )

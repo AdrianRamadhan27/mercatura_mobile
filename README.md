@@ -1,3 +1,6 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/bd9aa5e5-8f5a-463b-9eb5-a901b274c59b/branches/main/badge)](https://appcenter.ms)
+
+
 # Tugas Kelompok Akhir Semester PBP - Mercatura
 
 Nama anggota kelompok:
@@ -7,8 +10,12 @@ Nama anggota kelompok:
 - Raden Dhaneswara Timur Bhamakrti Rasendriya - 2106750710
 - Raden Mohamad Adrian Ramadhan Hendar Wibawa - 2106750540
 
+## 📱 Publikasi Aplikasi di App Center
+[Mercatura](https://install.appcenter.ms/orgs/mercatura_mobile/apps/mercatura/distribution_groups/public)
+
 ## 🌐 Nama Aplikasi dan Link ke Sumber Web Service
 [Mercatura](https://mercatura-id.up.railway.app)
+
 
 ## 🖼 Latar belakang & Kegunaan Aplikasi
 Mengingat pentingnya digitalisasi untuk memulihkan perekonomian dunia, kelompok kami memutuskan untuk membuat suatu aplikasi yang dapat membantu setiap pelaku UMKM, khususnya UMKM dalam negeri, untuk mengembangkan bisnis mereka. Seperti yang kita tahu, bahwa sekitar 70% dari setiap bisnis UMKM sendiri memberikan potensi yang sangat besar untuk roda ekonomi negara Indonesia. Bukti ini dapat terlihat selama beberapa tahun terakhir yang dipaparkan dalam forum diskusi sekretariat presiden bahwa terbukti bahwa UMKM dapat meningkatkan Produk Domestik Bruto (PDB) negara sebanyak dua kali lipat atau lebih tepatnya 61,97%. Ditambah lagi, dengan data yang mengatakan bahwa UMKM menyerap tenaga kerja sebanyak 70% memberikan secercah harapan untuk mereduksi pengangguran yang kian marak di Indonesia. Bila ditarik dalam sebuah kesimpulan, Indonesia memiliki peluang yang cukup besar sebagai pemain aktif di pasar global. Sangat disayangkan sekali apabila produk-produk lokal yang terdapat dalam negara Indonesia tidak dapat dipromosikan ke dalam kancah internasional. Oleh karena itu, kami berharap dengan aplikasi ini, setiap UMKM memiliki kans yang lebih tinggi  untuk bersaing di pasar global. 
